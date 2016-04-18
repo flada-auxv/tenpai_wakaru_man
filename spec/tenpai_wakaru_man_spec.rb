@@ -30,6 +30,6 @@ describe TenpaiWakaruMan::Detector do
 
     subject { TenpaiWakaruMan::Detector.new(str).tiles }
 
-    it { is_expected.to match_array(%w(1m 2m 3m 2p 2p 2p 3s 4s 5s Sw Sw Sw Pd Pd)) }
+    it { is_expected.to eq(%w(Sw Sw Sw Pd Pd 1m 2m 3m 3s 4s 5s 2p 2p 2p)) }
   end
 end
