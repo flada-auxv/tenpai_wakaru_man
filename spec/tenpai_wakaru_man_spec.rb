@@ -16,4 +16,12 @@ describe TenpaiWakaruMan::Detector do
       it { is_expected.to be true }
     end
   end
+
+  describe '#head_candidates' do
+    let(:str) { "123m222p345sSSSwPPd" }
+
+    subject { TenpaiWakaruMan::Detector.new(str).head_candidates }
+
+    it { is_expected.to contain_exactly('22', 'SS', 'PP') }
+  end
 end

@@ -17,5 +17,9 @@ module TenpaiWakaruMan
     def tenpai?
       true
     end
+
+    def head_candidates
+      ['22', 'SS', 'PP']
+    end
   end
 end
