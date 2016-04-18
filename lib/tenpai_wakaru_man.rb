@@ -10,8 +10,9 @@ module TenpaiWakaruMan
       end
     end
 
-    def initialize(str)
-      @tiles = str
+    def initialize(tiles)
+      @tiles = tiles
+      parse!
     end
 
     def tenpai?
@@ -22,8 +23,8 @@ module TenpaiWakaruMan
       ['22', 'SS', 'PP']
     end
 
-    def parse
-      @tiles.scan(/\d+[mps]|[ESWN]+w?|[PFC]+d?/).map {|str|
+    def parse!
+      @tiles = @tiles.scan(/\d+[mps]|[ESWN]+w?|[PFC]+d?/).map {|str|
         str.chop.chars.map {|s| s + str[-1] }
       }.flatten
     end

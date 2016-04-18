@@ -25,10 +25,10 @@ describe TenpaiWakaruMan::Detector do
     it { is_expected.to contain_exactly('22', 'SS', 'PP') }
   end
 
-  describe '#parse' do
+  describe '#initialize' do
     let(:str) { "123m222p345sSSSwPPd" }
 
-    subject { TenpaiWakaruMan::Detector.new(str).parse }
+    subject { TenpaiWakaruMan::Detector.new(str).tiles }
 
     it { is_expected.to match_array(%w(1m 2m 3m 2p 2p 2p 3s 4s 5s Sw Sw Sw Pd Pd)) }
   end
