@@ -1,11 +1,19 @@
 require 'spec_helper'
 
 describe TenpaiWakaruMan do
-  it 'has a version number' do
-    expect(TenpaiWakaruMan::VERSION).not_to be nil
-  end
+  describe 'tenpai?' do
+    subject { TenpaiWakaruMan.tenpai?(str) }
 
-  it 'does something useful' do
-    expect(false).to eq(true)
+    context '省略無し' do
+      let(:str) { "123m222p345sSSSwPPd" }
+
+      it { is_expected.to be true }
+    end
+
+    context '省略あり' do
+      let(:str) { "123m222p345sSSSPP" }
+
+      it { is_expected.to be true }
+    end
   end
 end
