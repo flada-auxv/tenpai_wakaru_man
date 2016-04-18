@@ -22,7 +22,7 @@ describe TenpaiWakaruMan::Detector do
 
     subject { TenpaiWakaruMan::Detector.new(str).head_candidates }
 
-    it { is_expected.to contain_exactly('22', 'SS', 'PP') }
+    it { is_expected.to contain_exactly('2p', 'Sw', 'Pd') }
   end
 
   describe '#initialize' do

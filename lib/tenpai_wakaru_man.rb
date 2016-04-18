@@ -20,7 +20,7 @@ module TenpaiWakaruMan
     end
 
     def head_candidates
-      ['22', 'SS', 'PP']
+      @tiles.uniq.select {|t| @tiles.count(t) >= 2 }
     end
 
     def parse!
