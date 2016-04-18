@@ -21,5 +21,11 @@ module TenpaiWakaruMan
     def head_candidates
       ['22', 'SS', 'PP']
     end
+
+    def parse
+      @tiles.scan(/\d+[mps]|[ESWN]+w?|[PFC]+d?/).map {|str|
+        str.chop.chars.map {|s| s + str[-1] }
+      }.flatten
+    end
   end
 end
