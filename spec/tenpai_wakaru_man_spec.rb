@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe TenpaiWakaruMan do
-  describe 'tenpai?' do
-    subject { TenpaiWakaruMan.tenpai?(str) }
+describe TenpaiWakaruMan::Detector do
+  describe '.tenpai?' do
+    subject { TenpaiWakaruMan::Detector.tenpai?(str) }
 
     context '省略無し' do
       let(:str) { "123m222p345sSSSwPPd" }
