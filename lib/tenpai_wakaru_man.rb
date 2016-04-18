@@ -27,6 +27,15 @@ module TenpaiWakaruMan
       true
     end
 
+    def hand_candidates
+      head_candidates.map {|head|
+        _tiles = @tiles.dup
+        _tiles.slice!(@tiles.index(head), 2)
+
+        [head, _tiles]
+      }
+    end
+
     def head_candidates
       @tiles.uniq.select {|t| @tiles.count(t) >= 2 }
     end
