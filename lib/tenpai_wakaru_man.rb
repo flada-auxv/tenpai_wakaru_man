@@ -16,6 +16,24 @@ module TenpaiWakaruMan
       def tenpai?(str)
         new(str).tenpai?
       end
+
+      def select_mentsu(mentsu_arr)
+        mentsu_arr.select {|mentsu| triplet?(mentsu) || sequence?(mentsu) }
+      end
+
+      def sequence?(mentsu)
+        return false unless mentsu.map {|str| str[-1] }.uniq.count == 1
+
+        sequence_candidates = mentsu.map {|tile| TILES[tile] }.select {|tile| tile > 6 }
+
+        return false unless sequence_candidates.uniq.count == 3
+
+        [sequence_candidates[0] + 2,  sequence_candidates[1] + 1, sequence_candidates[2]].uniq.count == 1
+      end
+
+      def triplet?(mentsu)
+        mentsu.uniq.count == 1
+      end
     end
 
     def initialize(tiles)
