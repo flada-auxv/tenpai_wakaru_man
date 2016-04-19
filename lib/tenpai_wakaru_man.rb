@@ -46,8 +46,12 @@ module TenpaiWakaruMan
     end
 
     def detect
-      hand_candidates.select {|head, hand|
-        self.class.select_mentsu(hand.combination(3)).combination(4).count > 0
+      hand_candidates.select {|head, hand| !_detect(hand).empty? }
+    end
+
+    def _detect(hand)
+      self.class.select_mentsu(hand.combination(3)).to_a.combination(4).select {|mentsu_arr|
+        mentsu_arr.flatten.sort_by {|tile| TILES[tile] } == hand
       }
     end
 
