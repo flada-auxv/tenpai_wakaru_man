@@ -42,7 +42,13 @@ module TenpaiWakaruMan
     end
 
     def tenpai?
-      true
+      !detect.empty?
+    end
+
+    def detect
+      hand_candidates.select {|head, hand|
+        self.class.select_mentsu(hand.combination(3)).combination(4).count > 0
+      }
     end
 
     def hand_candidates
