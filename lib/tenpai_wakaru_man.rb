@@ -17,22 +17,26 @@ module TenpaiWakaruMan
         new(str).tenpai?
       end
 
-      def select_mentsu(mentsu_arr)
-        mentsu_arr.select {|mentsu| triplet?(mentsu) || sequence?(mentsu) }
+      def select_set(sets_arr)
+        sets_arr.select {|set| set?(set) }
       end
 
-      def sequence?(mentsu)
-        return false unless mentsu.map {|str| str[-1] }.uniq.count == 1
-
-        sequence_candidates = mentsu.map {|tile| TILES[tile] }.select {|tile| tile > 6 }
-
-        return false unless sequence_candidates.uniq.count == 3
-
-        [sequence_candidates[0] + 2,  sequence_candidates[1] + 1, sequence_candidates[2]].uniq.count == 1
+      def set?(set)
+        pong?(set) || chow?(set)
       end
 
-      def triplet?(mentsu)
-        mentsu.uniq.count == 1
+      def chow?(set)
+        return false unless set.map {|str| str[-1] }.uniq.count == 1
+
+        chow_candidates = set.map {|tile| TILES[tile] }.select {|tile| tile > 6 }
+
+        return false unless chow_candidates.uniq.count == 3
+
+        [chow_candidates[0] + 2,  chow_candidates[1] + 1, chow_candidates[2]].uniq.count == 1
+      end
+
+      def pong?(set)
+        set.uniq.count == 1
       end
     end
 
@@ -50,7 +54,7 @@ module TenpaiWakaruMan
     end
 
     def _detect(hand)
-      self.class.select_mentsu(hand.combination(3)).to_a.combination(4).select {|mentsu_arr|
+      self.class.select_set(hand.combination(3)).to_a.combination(4).select {|mentsu_arr|
         mentsu_arr.flatten.sort_by {|tile| TILES[tile] } == hand
       }
     end

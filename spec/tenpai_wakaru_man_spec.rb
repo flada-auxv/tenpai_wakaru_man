@@ -35,8 +35,8 @@ describe TenpaiWakaruMan::Detector do
     end
   end
 
-  describe '.sequence?' do
-    subject { TenpaiWakaruMan::Detector.sequence?(tiles) }
+  describe '.chow?' do
+    subject { TenpaiWakaruMan::Detector.chow?(tiles) }
 
     context 'case1' do
       let(:tiles) { %w(1m 2m 3m) }
@@ -59,10 +59,10 @@ describe TenpaiWakaruMan::Detector do
     end
   end
 
-  describe '.triplet?' do
+  describe '.pong?' do
     let(:tiles) { %w(1m 1m 1m) }
 
-    subject { TenpaiWakaruMan::Detector.triplet?(tiles) }
+    subject { TenpaiWakaruMan::Detector.pong?(tiles) }
 
     it { is_expected.to be true }
   end
