@@ -1,5 +1,5 @@
 require "tenpai_wakaru_man/tiles"
-require "tenpai_wakaru_man/Scanner"
+require "tenpai_wakaru_man/scanner"
 
 module TenpaiWakaruMan
   class Set
