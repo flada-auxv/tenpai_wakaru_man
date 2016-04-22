@@ -1,3 +1,5 @@
+require 'tenpai_wakaru_man/hand'
+
 module TenpaiWakaruMan
   class Scanner
     REGEXP = /((\d+[mps]?|[ESWN]+w?|[PFC]+d)[LAR]?)/

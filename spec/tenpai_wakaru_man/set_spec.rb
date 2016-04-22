@@ -52,4 +52,23 @@ describe TenpaiWakaruMan::Set do
       it { is_expected.to be false }
     end
   end
+
+  describe '#melded_type' do
+    subject { TenpaiWakaruMan::Set.new(tiles).melded_type }
+
+    context 'not melded' do
+      let(:tiles) { "123m" }
+      xit { is_expected.to be_nil }
+    end
+
+    context 'chow' do
+      let(:tiles) { "123mL" }
+      xit { is_expected.to eq(:chow) }
+    end
+
+    context 'pong' do
+      let(:tiles) { "111mL" }
+      xit { is_expected.to eq(:pong) }
+    end
+  end
 end
