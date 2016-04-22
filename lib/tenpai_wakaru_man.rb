@@ -67,7 +67,7 @@ module TenpaiWakaruMan
     end
 
     def parse!
-      @tiles = Parser.parse_tile_str(@tiles)
+      @tiles = Scanner.scan(@tiles)
     end
   end
 end

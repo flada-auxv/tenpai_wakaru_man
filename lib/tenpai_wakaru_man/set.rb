@@ -1,5 +1,5 @@
 require "tenpai_wakaru_man/tiles"
-require "tenpai_wakaru_man/parser"
+require "tenpai_wakaru_man/Scanner"
 
 module TenpaiWakaruMan
   class Set
@@ -15,12 +15,15 @@ module TenpaiWakaruMan
       case tiles
       when String
         @tile_str = tiles
+        @tiles = Scanner.scan(@tile_str)
       when Array
         @tiles = tiles.sort_by {|tile| TILES[tile] }
+        @tile_str = Scanner.join_tiles(@tiles)
       end
+    end
 
-      @tiles ||= Parser.parse_tile_str(@tile_str)
-      @tile_str ||= Parser.join_tiles(@tiles)
+    def ==(other)
+      @tile_str == other.tile_str
     end
 
     def pair?
@@ -37,7 +40,6 @@ module TenpaiWakaruMan
 
     def chow?
       return false unless @tiles.map {|tile| tile[-1] }.uniq.count == 1
-
       chow_candidates = @tiles.map {|tile| TILES[tile] }.select {|tile| tile > 6 }
 
       return false unless chow_candidates.uniq.count == 3

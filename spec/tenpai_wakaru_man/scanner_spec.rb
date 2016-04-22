@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe TenpaiWakaruMan::Parser do
-  describe '.parse_tile_str' do
-    subject { TenpaiWakaruMan::Parser.parse_tile_str(tile_str) }
+describe TenpaiWakaruMan::Scanner do
+  describe '.scan' do
+    subject { TenpaiWakaruMan::Scanner.scan(tile_str) }
 
     context 'case1' do
       let(:tile_str) { '123m222p345sSSSwPPd' }
