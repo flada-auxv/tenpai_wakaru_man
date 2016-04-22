@@ -67,7 +67,7 @@ module TenpaiWakaruMan
     end
 
     def parse!
-      @tiles = Set.parse_tile_str(@tiles)
+      @tiles = Parser.parse_tile_str(@tiles)
     end
   end
 end
