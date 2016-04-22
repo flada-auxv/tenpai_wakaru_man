@@ -1,4 +1,5 @@
 require "tenpai_wakaru_man/version"
+require "tenpai_wakaru_man/set"
 require "tenpai_wakaru_man/tiles"
 
 module TenpaiWakaruMan
@@ -66,9 +67,7 @@ module TenpaiWakaruMan
     end
 
     def parse!
-      @tiles = @tiles.scan(/\d+[mps]|[ESWN]+w?|[PFC]+d?/).map {|str|
-        str.chop.chars.map {|s| s + str[-1] }
-      }.flatten.sort_by {|tile| TILES[tile] }
+      @tiles = Set.parse_tile_str(@tiles)
     end
   end
 end
