@@ -15,7 +15,7 @@ describe TenpaiWakaruMan::Set do
     end
   end
 
-  describe '.kong?' do
+  describe '#kong?' do
     subject { TenpaiWakaruMan::Set.new(tiles).kong? }
 
     context 'case1' do
@@ -29,7 +29,7 @@ describe TenpaiWakaruMan::Set do
     end
   end
 
-  describe '.chow?' do
+  describe '#chow?' do
     subject { TenpaiWakaruMan::Set.new(tiles).chow? }
 
     context 'case1' do
