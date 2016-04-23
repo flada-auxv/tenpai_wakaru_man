@@ -14,6 +14,9 @@ module TenpaiWakaruMan
         @tiles = tiles.sort_by {|tile| TILES[tile] }
         @tile_str = Scanner.join_tiles(@tiles)
       end
+
+      @unique_count = @tiles.uniq.count
+      @count = @tiles.count
     end
 
     def ==(other)
@@ -21,19 +24,20 @@ module TenpaiWakaruMan
     end
 
     def pair?
-      @tiles.count == 2 && @tiles.uniq.count == 1
+      @unique_count == 1 && @count == 2
     end
 
     def pong?
-      @tiles.count == 3 && @tiles.uniq.count == 1
+      @unique_count == 1 && @count == 3
     end
 
     def kong?
-      @tiles.count == 4 && @tiles.uniq.count == 1
+      @unique_count == 1 && @count == 4
     end
 
     def chow?
       return false unless @tiles.map {|tile| tile[-1] }.uniq.count == 1
+
       chow_candidates = @tiles.map {|tile| TILES[tile] }.select {|tile| tile > 6 }
 
       return false unless chow_candidates.uniq.count == 3
