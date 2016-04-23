@@ -4,8 +4,6 @@ require "tenpai_wakaru_man/tiles"
 
 module TenpaiWakaruMan
   class Detector
-    attr_accessor :tiles, :hand
-
     class << self
       def ready?(str)
         new(str).ready?
