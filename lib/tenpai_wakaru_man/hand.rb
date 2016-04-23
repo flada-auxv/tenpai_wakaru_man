@@ -36,6 +36,8 @@ module TenpaiWakaruMan
     end
 
     def ready_hands
+      detect_special_form!
+
       @ready_hands ||= head_candidates.map {|head| dup.set_head(head) }.map {|hand| hand.detect_ready_hands }.reject(&:empty?).flatten
     end
 
@@ -54,6 +56,10 @@ module TenpaiWakaruMan
       @all_tiles ||= (tiles + sets.map(&:tiles)).flatten.sort_by {|tile| TILES[tile] }
     end
 
+    def seven_pairs?
+      count_by.keys.count == 7 && count_by.values.all? {|i| i == 2 }
+    end
+
     private
 
     def head_candidates
@@ -66,6 +72,14 @@ module TenpaiWakaruMan
 
     def set_combination
       (@sets + set_candidates).combination(4).to_a.uniq {|set_arr| set_arr.map(&:tiles).hash }
+    end
+
+    def count_by
+      @count_by ||= @tiles.group_by {|tile| tile }.each_with_object({}) {|(k,v), hash| hash[k] = v.count }
+    end
+
+    def detect_special_form!
+      @ready_hands = Array(dup) if seven_pairs?
     end
   end
 end

@@ -31,7 +31,7 @@ describe TenpaiWakaruMan::Detector do
 
     context 'Seven Pairs' do
       let(:str) { "112233m11p22sEEwPPd" }
-      xit { is_expected.to be true } # TODO
+      it { is_expected.to be true }
     end
   end
 end
