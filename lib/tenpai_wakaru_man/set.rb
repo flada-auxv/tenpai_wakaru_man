@@ -23,6 +23,10 @@ module TenpaiWakaruMan
       @tile_str == other.tile_str
     end
 
+    def inspect
+      "#<#{self.class.name}:\"#{@tile_str}\">"
+    end
+
     def pair?
       @unique_count == 1 && @count == 2
     end
