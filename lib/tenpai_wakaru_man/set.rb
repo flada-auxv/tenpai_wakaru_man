@@ -5,12 +5,6 @@ module TenpaiWakaruMan
   class Set
     attr_accessor :tiles, :tile_str
 
-    class << self
-      def pong?(tile_str); new(tile_str).pong? end
-      def kong?(tile_str); new(tile_str).kong? end
-      def chow?(tile_str); new(tile_str).chow? end
-    end
-
     def initialize(tiles)
       case tiles
       when String
