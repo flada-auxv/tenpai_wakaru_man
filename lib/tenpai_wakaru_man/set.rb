@@ -15,7 +15,7 @@ module TenpaiWakaruMan
       case tiles
       when String
         @tile_str = tiles
-        @tiles = Scanner.scan(@tile_str)
+        @tiles = Scanner.split(@tile_str)
       when Array
         @tiles = tiles.sort_by {|tile| TILES[tile] }
         @tile_str = Scanner.join_tiles(@tiles)

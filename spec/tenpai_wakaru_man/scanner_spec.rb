@@ -6,7 +6,26 @@ describe TenpaiWakaruMan::Scanner do
 
     context 'case1' do
       let(:tile_str) { '123m222p345sSSSwPPd' }
+      it { is_expected.to eq(%w(123m 222p 345s SSSw PPd)) }
+    end
+
+    context 'case2' do
+      let(:tile_str) { '123mL222pA1111sRSSSwPPd' }
+      it { is_expected.to eq(%w(123mL 222pA 1111sR SSSw PPd)) }
+    end
+  end
+
+  describe '.split' do
+    subject { TenpaiWakaruMan::Scanner.split(tile_str) }
+
+    context 'case1' do
+      let(:tile_str) { '123m222p345sSSSwPPd' }
       it { is_expected.to eq(%w(Sw Sw Sw Pd Pd 1m 2m 3m 3s 4s 5s 2p 2p 2p)) }
+    end
+
+    context 'case2' do
+      let(:tile_str) { '123mL222pA1111sRSSSwPPd' }
+      it { is_expected.to eq(%w(Sw Sw Sw Pd Pd 1m 2m 3m 1s 1s 1s 1s 2p 2p 2p)) }
     end
   end
 

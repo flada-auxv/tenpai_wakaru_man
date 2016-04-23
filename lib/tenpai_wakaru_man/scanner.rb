@@ -6,13 +6,17 @@ module TenpaiWakaruMan
 
     class << self
       def scan(tile_str)
-        tile_str.scan(REGEXP).map {|match| match.first }.map {|tile|
+        tile_str.scan(REGEXP).map {|match| match.first }
+      end
+
+      def split(tile_str)
+        scan(tile_str).map {|tile|
           tile.delete("mspdwLAR").chars.map {|str| str + tile[/[mspdw]/] }
         }.flatten.sort_by {|tile| TILES[tile] }
       end
 
       def parse(tile_str)
-        tile_str.scan(REGEXP).map {|match| match.first }.each_with_object(Hand.new) {|tile, hand|
+        scan(tile_str).each_with_object(Hand.new) {|tile, hand|
           if tile[/[LAR]/]
             hand << Set.new(tile)
           else
