@@ -23,6 +23,10 @@ module TenpaiWakaruMan
       @tile_str == other.tile_str
     end
 
+    def <=>(other)
+      @tiles.hash <=> other.tiles.hash
+    end
+
     def inspect
       "#<#{self.class.name}:\"#{@tile_str}\">"
     end
