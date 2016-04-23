@@ -1,8 +1,16 @@
+require 'tenpai_wakaru_man/errors'
+
 module TenpaiWakaruMan
   class Hand
     attr_accessor :head, :tiles, :sets
 
     class << self
+      def build(head: nil, tiles: [], sets: [])
+        new(head: head, tiles: tiles, sets: sets)
+      rescue TileCountError
+        nil
+      end
+
       def parse_from(tile_str)
         Parser.parse(tile_str)
       end
@@ -12,6 +20,8 @@ module TenpaiWakaruMan
       @head  = head
       @tiles = tiles
       @sets  = sets
+
+      check_tile_count!
     end
 
     def ==(other)
@@ -51,7 +61,7 @@ module TenpaiWakaruMan
     end
 
     def detect_ready_hands
-      set_combination.map {|sets| self.class.new(head: @head.dup, sets: sets) }.select {|hand| hand.all_tiles == all_tiles }
+      set_combination.map {|sets| self.class.build(head: @head.dup, sets: sets) }.compact.select {|hand| hand.all_tiles == all_tiles }
     end
 
     def set_head(tile)
@@ -62,7 +72,7 @@ module TenpaiWakaruMan
     end
 
     def all_tiles
-      @all_tiles ||= (tiles + sets.map(&:tiles)).flatten.sort_by {|tile| TILES[tile] }
+      (tiles + sets.map(&:tiles)).flatten.sort_by {|tile| TILES[tile] }
     end
 
     def seven_pairs?
@@ -88,11 +98,15 @@ module TenpaiWakaruMan
     end
 
     def count_by
-      @count_by ||= @tiles.group_by {|tile| tile }.each_with_object({}) {|(k,v), hash| hash[k] = v.count }
+      all_tiles.group_by {|tile| tile }.each_with_object({}) {|(k,v), hash| hash[k] = v.count }
     end
 
     def detect_special_form!
       @ready_hands = Array(dup) if thirteen_orphans? || seven_pairs?
+    end
+
+    def check_tile_count!
+      raise TileCountError.new('some tiles existing than four.') if count_by.any? {|key, count| count > 4 }
     end
   end
 end

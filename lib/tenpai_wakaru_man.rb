@@ -6,16 +6,15 @@ module TenpaiWakaruMan
   class Detector
     class << self
       def ready?(str)
-        new(str).ready?
+        new.ready?(str)
       end
     end
 
-    def initialize(tiles)
-      @hand = Parser.parse(tiles)
+    def initialize
     end
 
-    def ready?
-      @hand.ready?
+    def ready?(tiles)
+      Parser.parse(tiles).ready?
     end
   end
 end
