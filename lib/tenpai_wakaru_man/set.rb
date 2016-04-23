@@ -31,6 +31,10 @@ module TenpaiWakaruMan
       "#<#{self.class.name}:\"#{@msp_notation}\">"
     end
 
+    def to_s
+      @msp_notation
+    end
+
     def pair?
       @unique_count == 1 && @count == 2
     end

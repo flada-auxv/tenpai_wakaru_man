@@ -31,6 +31,15 @@ module TenpaiWakaruMan
       self.class.new(head: head&.dup, tiles: tiles.dup, sets: sets.dup)
     end
 
+    def inspect
+      "#<#{self.class.name}:\"#{to_msp_notation}\", @head=#{@head.inspect}, @sets=#{@sets.map(&:to_s)}, @tiles=#{@tiles}>"
+    end
+
+    def to_msp_notation
+      ([Set.new(@tiles)] + @sets).sort.map(&:msp_notation).join
+    end
+    alias :to_s :to_msp_notation
+
     def ready?
       !ready_hands.empty?
     end
