@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe TenpaiWakaruMan::Hand do
   describe '#ready_hands' do
-    subject(:hands) { TenpaiWakaruMan::Hand.build(str).ready_hands }
+    subject(:hands) { TenpaiWakaruMan::Hand.parse_from(str).ready_hands }
 
     context 'case1' do
       let(:str) { "123m222p345sSSSwPPd" }

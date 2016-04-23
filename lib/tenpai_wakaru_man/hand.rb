@@ -3,7 +3,7 @@ module TenpaiWakaruMan
     attr_accessor :head, :tiles, :sets
 
     class << self
-      def build(tile_str)
+      def parse_from(tile_str)
         Parser.parse(tile_str)
       end
     end
