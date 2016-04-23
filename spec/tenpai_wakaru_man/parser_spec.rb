@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe TenpaiWakaruMan::Scanner do
+describe TenpaiWakaruMan::Parser do
   describe '.scan' do
-    subject { TenpaiWakaruMan::Scanner.scan(tile_str) }
+    subject { TenpaiWakaruMan::Parser.scan(tile_str) }
 
     context 'case1' do
       let(:tile_str) { '123m222p345sSSSwPPd' }
@@ -16,7 +16,7 @@ describe TenpaiWakaruMan::Scanner do
   end
 
   describe '.split' do
-    subject { TenpaiWakaruMan::Scanner.split(tile_str) }
+    subject { TenpaiWakaruMan::Parser.split(tile_str) }
 
     context 'case1' do
       let(:tile_str) { '123m222p345sSSSwPPd' }
@@ -30,7 +30,7 @@ describe TenpaiWakaruMan::Scanner do
   end
 
   describe '.parse' do
-    subject(:hand) { TenpaiWakaruMan::Scanner.parse(tile_str) }
+    subject(:hand) { TenpaiWakaruMan::Parser.parse(tile_str) }
 
     context 'case1' do
       let(:tile_str) { '123m222p345sSSSwPPd' }

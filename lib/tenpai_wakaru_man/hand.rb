@@ -4,7 +4,7 @@ module TenpaiWakaruMan
 
     class << self
       def build(tile_str)
-        Scanner.parse(tile_str)
+        Parser.parse(tile_str)
       end
     end
 

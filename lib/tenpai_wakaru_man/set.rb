@@ -1,5 +1,5 @@
 require "tenpai_wakaru_man/tiles"
-require "tenpai_wakaru_man/scanner"
+require "tenpai_wakaru_man/parser"
 
 module TenpaiWakaruMan
   class Set
@@ -9,10 +9,10 @@ module TenpaiWakaruMan
       case tiles
       when String
         @tile_str = tiles
-        @tiles = Scanner.split(@tile_str)
+        @tiles = Parser.split(@tile_str)
       when Array
         @tiles = tiles.sort_by {|tile| TILES[tile] }
-        @tile_str = Scanner.join_tiles(@tiles)
+        @tile_str = Parser.join_tiles(@tiles)
       end
 
       @unique_count = @tiles.uniq.count

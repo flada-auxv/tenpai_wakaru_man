@@ -13,7 +13,7 @@ module TenpaiWakaruMan
     end
 
     def initialize(tiles)
-      @hand = Scanner.parse(tiles)
+      @hand = Parser.parse(tiles)
     end
 
     def ready?

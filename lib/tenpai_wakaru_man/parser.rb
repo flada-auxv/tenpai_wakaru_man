@@ -1,7 +1,7 @@
 require 'tenpai_wakaru_man/hand'
 
 module TenpaiWakaruMan
-  class Scanner
+  class Parser
     SET_REGEXP = /((\d+[msp]|[PFC]+d|[ESWN]+w)[lar]?)/
     SUIT_SYMBOLS = "mspdw"
     MELDED_SYMBOLS = "lar"
