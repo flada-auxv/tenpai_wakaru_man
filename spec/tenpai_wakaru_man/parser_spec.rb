@@ -38,11 +38,11 @@ describe TenpaiWakaruMan::Parser do
     end
 
     context 'case2' do
-      let(:tile_str) { '123ml222pa1111srSSSwPPd' }
+      let(:tile_str) { '123ml222pa1111srSSSSwPPd' }
 
-      it { expect(hand.tiles).to eq(%w(Sw Sw Sw Pd Pd)) }
+      it { expect(hand.tiles).to eq(%w(Pd Pd)) }
       it { expect(hand.sets).to eq([
-        TenpaiWakaruMan::Set.new("123ml"), TenpaiWakaruMan::Set.new("222pa"), TenpaiWakaruMan::Set.new("1111sr")
+        TenpaiWakaruMan::Set.new("123ml"), TenpaiWakaruMan::Set.new("222pa"), TenpaiWakaruMan::Set.new("1111sr"), TenpaiWakaruMan::Set.new("SSSSw")
       ]) }
     end
   end
