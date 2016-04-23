@@ -29,10 +29,6 @@ module TenpaiWakaruMan
           end
         }
       end
-
-      def to_msp_notation(tiles)
-        tiles.sort_by {|tile| TILES[tile] }.map {|tile| tile.split("") }.chunk {|_, suite| suite }.map {|key, arr| arr.map(&:first).join << key }.join
-      end
     end
   end
 end

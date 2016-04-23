@@ -1,6 +1,24 @@
 require 'spec_helper'
 
 describe TenpaiWakaruMan::Set do
+  describe '#initialize' do
+    subject(:set) { TenpaiWakaruMan::Set.new(tiles) }
+
+    context 'with string(msp_notation)' do
+      let(:tiles) { '222pa' }
+
+      it { expect(set.tiles).to eq(%w(2p 2p 2p)) }
+      it { expect(set.msp_notation).to eq('222pa') }
+    end
+
+    context 'with array' do
+      let(:tiles) { %w(2p 2p 2p) }
+
+      it { expect(set.tiles).to eq(%w(2p 2p 2p)) }
+      it { expect(set.msp_notation).to eq('222p') }
+    end
+  end
+
   describe '#pong?' do
     subject { TenpaiWakaruMan::Set.new(tiles).pong? }
 

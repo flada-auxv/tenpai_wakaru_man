@@ -3,16 +3,16 @@ require "tenpai_wakaru_man/parser"
 
 module TenpaiWakaruMan
   class Set
-    attr_accessor :tiles, :tile_str
+    attr_accessor :tiles, :msp_notation
 
     def initialize(tiles)
       case tiles
       when String
-        @tile_str = tiles
-        @tiles = Parser.split(@tile_str)
+        @msp_notation = tiles
+        @tiles = Parser.split(@msp_notation)
       when Array
         @tiles = tiles.sort_by {|tile| TILES[tile] }
-        @tile_str = Parser.to_msp_notation(@tiles)
+        @msp_notation = to_msp_notation
       end
 
       @unique_count = @tiles.uniq.count
@@ -20,7 +20,7 @@ module TenpaiWakaruMan
     end
 
     def ==(other)
-      @tile_str == other.tile_str
+      @msp_notation == other.msp_notation
     end
 
     def <=>(other)
@@ -28,7 +28,7 @@ module TenpaiWakaruMan
     end
 
     def inspect
-      "#<#{self.class.name}:\"#{@tile_str}\">"
+      "#<#{self.class.name}:\"#{@msp_notation}\">"
     end
 
     def pair?
@@ -54,7 +54,13 @@ module TenpaiWakaruMan
     end
 
     def melded?
-      @melded ||= !!@tile_str[/[#{Parser::MELDED_SYMBOLS}]/]
+      @melded ||= !!@msp_notation[/[#{Parser::MELDED_SYMBOLS}]/]
+    end
+
+    private
+
+    def to_msp_notation
+      @tiles.sort_by {|tile| TILES[tile] }.map {|tile| tile.split("") }.chunk {|_, suite| suite }.map {|key, arr| arr.map(&:first).join << key }.join
     end
   end
 end
