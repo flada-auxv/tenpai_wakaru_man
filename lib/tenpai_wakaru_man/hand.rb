@@ -60,6 +60,10 @@ module TenpaiWakaruMan
       count_by.keys.count == 7 && count_by.values.all? {|i| i == 2 }
     end
 
+    def thirteen_orphans?
+      count_by.keys.count == 13
+    end
+
     private
 
     def head_candidates
@@ -79,7 +83,7 @@ module TenpaiWakaruMan
     end
 
     def detect_special_form!
-      @ready_hands = Array(dup) if seven_pairs?
+      @ready_hands = Array(dup) if thirteen_orphans? || seven_pairs?
     end
   end
 end

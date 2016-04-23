@@ -26,7 +26,7 @@ describe TenpaiWakaruMan::Detector do
 
     context 'Thirteen Orphans' do
       let(:str) { "119m19p19sESWNwPFCd" }
-      xit { is_expected.to be true } # TODO
+      it { is_expected.to be true }
     end
 
     context 'Seven Pairs' do
