@@ -12,7 +12,7 @@ module TenpaiWakaruMan
         @tiles = Parser.split(@tile_str)
       when Array
         @tiles = tiles.sort_by {|tile| TILES[tile] }
-        @tile_str = Parser.join_tiles(@tiles)
+        @tile_str = Parser.to_msp_notation(@tiles)
       end
 
       @unique_count = @tiles.uniq.count
