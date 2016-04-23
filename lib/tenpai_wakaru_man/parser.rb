@@ -20,8 +20,10 @@ module TenpaiWakaruMan
 
       def parse(tile_str)
         scan(tile_str).each_with_object(Hand.new) {|tile, hand|
-          if tile[/[#{MELDED_SYMBOLS}]/]
+          if tile[/[#{MELDED_SYMBOLS}]/] # melded pong, melded kong, melded chow
             hand << Set.new(tile)
+          elsif (set = Set.new(tile)).kong? # concealed kong
+            hand << set
           else
             suit = tile[/[#{SUIT_SYMBOLS}]/]
             hand << tile.delete(SUIT_SYMBOLS + MELDED_SYMBOLS).chars.map {|str| str + suit }

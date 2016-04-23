@@ -29,5 +29,16 @@ describe TenpaiWakaruMan::Hand do
         )
       )}
     end
+
+    context 'case3' do
+      let(:str) { "123ml222pa1111srSSSSwPPd" }
+
+      it { is_expected.to contain_exactly(
+        TenpaiWakaruMan::Hand.new(
+          head: "Pd",
+          sets: [TenpaiWakaruMan::Set.new("123ml"), TenpaiWakaruMan::Set.new("222pa"), TenpaiWakaruMan::Set.new("1111sr"), TenpaiWakaruMan::Set.new("SSSSw")]
+        )
+      )}
+    end
   end
 end
