@@ -52,5 +52,9 @@ module TenpaiWakaruMan
 
       [chow_candidates[0] + 2,  chow_candidates[1] + 1, chow_candidates[2]].uniq.count == 1
     end
+
+    def melded?
+      @melded ||= !!@tile_str[/[#{Parser::MELDED_SYMBOLS}]/]
+    end
   end
 end
