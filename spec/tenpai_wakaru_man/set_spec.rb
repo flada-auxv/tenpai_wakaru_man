@@ -62,12 +62,12 @@ describe TenpaiWakaruMan::Set do
     end
 
     context 'chow' do
-      let(:tiles) { "123mL" }
+      let(:tiles) { "123ml" }
       xit { is_expected.to eq(:chow) }
     end
 
     context 'pong' do
-      let(:tiles) { "111mL" }
+      let(:tiles) { "111ml" }
       xit { is_expected.to eq(:pong) }
     end
   end

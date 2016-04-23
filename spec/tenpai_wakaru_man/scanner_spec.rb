@@ -10,8 +10,8 @@ describe TenpaiWakaruMan::Scanner do
     end
 
     context 'case2' do
-      let(:tile_str) { '123mL222pA1111sRSSSwPPd' }
-      it { is_expected.to eq(%w(123mL 222pA 1111sR SSSw PPd)) }
+      let(:tile_str) { '123ml222pa1111srSSSwPPd' }
+      it { is_expected.to eq(%w(123ml 222pa 1111sr SSSw PPd)) }
     end
   end
 
@@ -24,7 +24,7 @@ describe TenpaiWakaruMan::Scanner do
     end
 
     context 'case2' do
-      let(:tile_str) { '123mL222pA1111sRSSSwPPd' }
+      let(:tile_str) { '123ml222pa1111srSSSwPPd' }
       it { is_expected.to eq(%w(Sw Sw Sw Pd Pd 1m 2m 3m 1s 1s 1s 1s 2p 2p 2p)) }
     end
   end
@@ -38,11 +38,11 @@ describe TenpaiWakaruMan::Scanner do
     end
 
     context 'case2' do
-      let(:tile_str) { '123mL222pA1111sRSSSwPPd' }
+      let(:tile_str) { '123ml222pa1111srSSSwPPd' }
 
       it { expect(hand.tiles).to eq(%w(Sw Sw Sw Pd Pd)) }
       it { expect(hand.sets).to eq([
-        TenpaiWakaruMan::Set.new("123mL"), TenpaiWakaruMan::Set.new("222pA"), TenpaiWakaruMan::Set.new("1111sR")
+        TenpaiWakaruMan::Set.new("123ml"), TenpaiWakaruMan::Set.new("222pa"), TenpaiWakaruMan::Set.new("1111sr")
       ]) }
     end
   end

@@ -2,7 +2,7 @@ require 'tenpai_wakaru_man/hand'
 
 module TenpaiWakaruMan
   class Scanner
-    REGEXP = /((\d+[mps]?|[ESWN]+w?|[PFC]+d)[LAR]?)/
+    REGEXP = /((\d+[mps]?|[ESWN]+w?|[PFC]+d)[lar]?)/
 
     class << self
       def scan(tile_str)
@@ -11,16 +11,16 @@ module TenpaiWakaruMan
 
       def split(tile_str)
         scan(tile_str).map {|tile|
-          tile.delete("mspdwLAR").chars.map {|str| str + tile[/[mspdw]/] }
+          tile.delete("mspdwlar").chars.map {|str| str + tile[/[mspdw]/] }
         }.flatten.sort_by {|tile| TILES[tile] }
       end
 
       def parse(tile_str)
         scan(tile_str).each_with_object(Hand.new) {|tile, hand|
-          if tile[/[LAR]/]
+          if tile[/[lar]/]
             hand << Set.new(tile)
           else
-            hand << tile.delete("mspdwLAR").chars.map {|str| str + tile[/[mspdw]/] }
+            hand << tile.delete("mspdwlar").chars.map {|str| str + tile[/[mspdw]/] }
           end
         }
       end
