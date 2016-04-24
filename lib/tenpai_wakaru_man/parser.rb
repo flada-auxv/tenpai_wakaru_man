@@ -1,4 +1,5 @@
 require 'tenpai_wakaru_man/hand'
+require 'tenpai_wakaru_man/set'
 
 module TenpaiWakaruMan
   class Parser

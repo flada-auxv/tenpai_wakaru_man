@@ -1,6 +1,7 @@
 require "tenpai_wakaru_man/version"
-require "tenpai_wakaru_man/set"
-require "tenpai_wakaru_man/tiles"
+require "tenpai_wakaru_man/errors"
+require "tenpai_wakaru_man/parser"
+require "tenpai_wakaru_man/calculator"
 
 module TenpaiWakaruMan
   class Detector
