@@ -104,4 +104,23 @@ describe TenpaiWakaruMan::Meld do
       it { is_expected.to eq(nil) }
     end
   end
+
+  describe '#include_terminal_or_honor?' do
+    subject { TenpaiWakaruMan::Meld.new(tiles).include_terminal_or_honor? }
+
+    context 'with honor' do
+      let(:tiles) { 'PPPd' }
+      it { is_expected.to be true }
+    end
+
+    context 'with terminal' do
+      let(:tiles) { '123m' }
+      it { is_expected.to be true }
+    end
+
+    context 'without honor or terminal' do
+      let(:tiles) { '234m' }
+      it { is_expected.to be false }
+    end
+  end
 end

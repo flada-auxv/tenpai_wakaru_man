@@ -68,6 +68,22 @@ module TenpaiWakaruMan
       end
     end
 
+    def include_honor?
+      !!@msp_notation[/[#{Parser::HONOR_SYMBOLS}]/]
+    end
+
+    def include_terminal?
+      !!@msp_notation[/[19]/]
+    end
+
+    def include_terminal_or_honor?
+      include_honor? || include_terminal?
+    end
+
+    def exclude_terminal_or_honor?
+      !include_terminal_or_honor?
+    end
+
     private
 
     def to_msp_notation
