@@ -35,7 +35,7 @@ module TenpaiWakaruMan
       @msp_notation
     end
 
-    def open?; !!@msp_notation[/[#{Parser::MELDED_SYMBOLS}]/] end
+    def open?; !!@msp_notation[/[#{Parser::OPEN_MELDED_SYMBOLS}]/] end
     def closed?; !open? end
     def revealed?; @revealed ||= open? || closed_quad? end
 

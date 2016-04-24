@@ -3,19 +3,24 @@ require 'tenpai_wakaru_man/meld'
 
 module TenpaiWakaruMan
   class Parser
-    SET_REGEXP = /((\d+[msp]|[PFC]+d|[ESWN]+w)[lar]?)/
-    SUIT_SYMBOLS = "mspdw"
-    MELDED_SYMBOLS = "lar"
+    SUITED_SYMBOLS = "msp"
+    DRAGON_SYMBOL = "d"
+    WIND_SYMBOL = "w"
+    OPEN_MELDED_SYMBOLS = "lar"
+    HONOR_SYMBOLS = DRAGON_SYMBOL + WIND_SYMBOL
+    MELD_SYMBOLS = SUITED_SYMBOLS + HONOR_SYMBOLS + OPEN_MELDED_SYMBOLS
+
+    MELD_REGEXP = /((\d+[#{SUITED_SYMBOLS}]|[PFC]+#{DRAGON_SYMBOL}|[ESWN]+#{WIND_SYMBOL})[#{OPEN_MELDED_SYMBOLS}]?)/
 
     class << self
       def scan(tile_str)
-        tile_str.scan(SET_REGEXP).map {|tile_with_suite, _| tile_with_suite }
+        tile_str.scan(MELD_REGEXP).map {|tile_with_suite, _| tile_with_suite }
       end
 
       def split(tile_str)
         scan(tile_str).map {|tile|
-          suit = tile[/[#{SUIT_SYMBOLS}]/]
-          tile.delete(SUIT_SYMBOLS + MELDED_SYMBOLS).chars.map {|str| str + suit }
+          meld_type = tile[/[#{MELD_SYMBOLS}]/]
+          tile.delete(MELD_SYMBOLS).chars.map {|str| str + meld_type }
         }.flatten.sort_by {|tile| TILES[tile] }
       end
 
