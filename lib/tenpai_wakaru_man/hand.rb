@@ -62,6 +62,14 @@ module TenpaiWakaruMan
       self
     end
 
+    def closed?
+      melds.all?(&:closed?)
+    end
+
+    def open?
+      !closed?
+    end
+
     def all_tiles
       (tiles + melds.map(&:tiles)).flatten.sort_by {|tile| TILES[tile] }
     end
