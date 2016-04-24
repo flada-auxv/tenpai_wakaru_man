@@ -2,7 +2,7 @@ require "tenpai_wakaru_man/tiles"
 require "tenpai_wakaru_man/parser"
 
 module TenpaiWakaruMan
-  class Set
+  class Meld
     attr_accessor :tiles, :msp_notation
 
     def initialize(tiles)

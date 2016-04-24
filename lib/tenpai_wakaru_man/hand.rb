@@ -2,11 +2,11 @@ require 'tenpai_wakaru_man/errors'
 
 module TenpaiWakaruMan
   class Hand
-    attr_accessor :head, :tiles, :sets
+    attr_accessor :head, :tiles, :melds
 
     class << self
-      def build(head: nil, tiles: [], sets: [])
-        new(head: head, tiles: tiles, sets: sets)
+      def build(head: nil, tiles: [], melds: [])
+        new(head: head, tiles: tiles, melds: melds)
       rescue TileCountError
         nil
       end
@@ -16,28 +16,28 @@ module TenpaiWakaruMan
       end
     end
 
-    def initialize(head: nil, tiles: [], sets: [])
+    def initialize(head: nil, tiles: [], melds: [])
       @head  = head
       @tiles = tiles.sort_by {|tile| TILES[tile] }
-      @sets  = sets
+      @melds  = melds
 
       check_tile_count!
     end
 
     def ==(other)
-      head == other.head && tiles == other.tiles && sets == other.sets
+      head == other.head && tiles == other.tiles && melds == other.melds
     end
 
     def dup
-      self.class.new(head: head&.dup, tiles: tiles.dup, sets: sets.dup)
+      self.class.new(head: head&.dup, tiles: tiles.dup, melds: melds.dup)
     end
 
     def inspect
-      "#<#{self.class.name}:\"#{to_msp_notation}\", @head=#{@head.inspect}, @sets=#{@sets.map(&:to_s)}, @tiles=#{@tiles}>"
+      "#<#{self.class.name}:\"#{to_msp_notation}\", @head=#{@head.inspect}, @melds=#{@melds.map(&:to_s)}, @tiles=#{@tiles}>"
     end
 
     def to_msp_notation
-      ([Set.new(@tiles)] + @sets).sort.map(&:msp_notation).join
+      ([Meld.new(@tiles)] + @melds).sort.map(&:msp_notation).join
     end
     alias :to_s :to_msp_notation
 
@@ -52,7 +52,7 @@ module TenpaiWakaruMan
     end
 
     def detect_ready_hands
-      set_combination.map {|sets| self.class.build(head: @head.dup, sets: sets) }.compact.select {|hand| hand.all_tiles == all_tiles }
+      meld_combination.map {|melds| self.class.build(head: @head.dup, melds: melds) }.compact.select {|hand| hand.all_tiles == all_tiles }
     end
 
     def set_head(tile)
@@ -63,7 +63,7 @@ module TenpaiWakaruMan
     end
 
     def all_tiles
-      (tiles + sets.map(&:tiles)).flatten.sort_by {|tile| TILES[tile] }
+      (tiles + melds.map(&:tiles)).flatten.sort_by {|tile| TILES[tile] }
     end
 
     def seven_pairs?
@@ -80,12 +80,12 @@ module TenpaiWakaruMan
       @tiles.uniq.select {|t| @tiles.count(t) >= 2 }
     end
 
-    def set_candidates
-      @tiles.combination(3).map {|tiles| Set.new(tiles) }.select {|set| set.pong? || set.chow? }
+    def meld_candidates
+      @tiles.combination(3).map {|tiles| Meld.new(tiles) }.select {|meld| meld.pong? || meld.chow? }
     end
 
-    def set_combination
-      (@sets + set_candidates).combination(4).to_a.uniq {|set_arr| set_arr.map(&:tiles).hash }
+    def meld_combination
+      (@melds + meld_candidates).combination(4).to_a.uniq {|meld_arr| meld_arr.map(&:tiles).hash }
     end
 
     def count_by

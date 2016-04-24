@@ -1,5 +1,5 @@
 require 'tenpai_wakaru_man/hand'
-require 'tenpai_wakaru_man/set'
+require 'tenpai_wakaru_man/meld'
 
 module TenpaiWakaruMan
   class Parser
@@ -20,8 +20,8 @@ module TenpaiWakaruMan
       end
 
       def parse(tile_str)
-        args = scan(tile_str).map {|tiles| Set.new(tiles) }.chunk {|set| set.melded? || set.kong? }.each_with_object({sets: [], tiles: []}) {|(bool, value), hash|
-          bool ? hash[:sets] += value : hash[:tiles] += value.map(&:tiles).flatten
+        args = scan(tile_str).map {|tiles| Meld.new(tiles) }.chunk {|meld| meld.melded? || meld.kong? }.each_with_object({melds: [], tiles: []}) {|(bool, value), hash|
+          bool ? hash[:melds] += value : hash[:tiles] += value.map(&:tiles).flatten
         }
 
         Hand.build(args)

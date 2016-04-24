@@ -41,8 +41,8 @@ describe TenpaiWakaruMan::Parser do
       let(:tile_str) { '123ml222pa1111srSSSSwPPd' }
 
       it { expect(hand.tiles).to eq(%w(Pd Pd)) }
-      it { expect(hand.sets).to eq([
-        TenpaiWakaruMan::Set.new("123ml"), TenpaiWakaruMan::Set.new("222pa"), TenpaiWakaruMan::Set.new("1111sr"), TenpaiWakaruMan::Set.new("SSSSw")
+      it { expect(hand.melds).to eq([
+        TenpaiWakaruMan::Meld.new("123ml"), TenpaiWakaruMan::Meld.new("222pa"), TenpaiWakaruMan::Meld.new("1111sr"), TenpaiWakaruMan::Meld.new("SSSSw")
       ]) }
     end
   end

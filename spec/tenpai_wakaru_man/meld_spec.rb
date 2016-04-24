@@ -1,26 +1,26 @@
 require 'spec_helper'
 
-describe TenpaiWakaruMan::Set do
+describe TenpaiWakaruMan::Meld do
   describe '#initialize' do
-    subject(:set) { TenpaiWakaruMan::Set.new(tiles) }
+    subject(:meld) { TenpaiWakaruMan::Meld.new(tiles) }
 
     context 'with string(msp_notation)' do
       let(:tiles) { '222pa' }
 
-      it { expect(set.tiles).to eq(%w(2p 2p 2p)) }
-      it { expect(set.msp_notation).to eq('222pa') }
+      it { expect(meld.tiles).to eq(%w(2p 2p 2p)) }
+      it { expect(meld.msp_notation).to eq('222pa') }
     end
 
     context 'with array' do
       let(:tiles) { %w(2p 2p 2p) }
 
-      it { expect(set.tiles).to eq(%w(2p 2p 2p)) }
-      it { expect(set.msp_notation).to eq('222p') }
+      it { expect(meld.tiles).to eq(%w(2p 2p 2p)) }
+      it { expect(meld.msp_notation).to eq('222p') }
     end
   end
 
   describe '#pong?' do
-    subject { TenpaiWakaruMan::Set.new(tiles).pong? }
+    subject { TenpaiWakaruMan::Meld.new(tiles).pong? }
 
     context 'case1' do
       let(:tiles) { %w(1m 1m 1m) }
@@ -34,7 +34,7 @@ describe TenpaiWakaruMan::Set do
   end
 
   describe '#kong?' do
-    subject { TenpaiWakaruMan::Set.new(tiles).kong? }
+    subject { TenpaiWakaruMan::Meld.new(tiles).kong? }
 
     context 'case1' do
       let(:tiles) { %w(1m 1m 1m 1m) }
@@ -48,7 +48,7 @@ describe TenpaiWakaruMan::Set do
   end
 
   describe '#chow?' do
-    subject { TenpaiWakaruMan::Set.new(tiles).chow? }
+    subject { TenpaiWakaruMan::Meld.new(tiles).chow? }
 
     context 'case1' do
       let(:tiles) { %w(1m 2m 3m) }
@@ -72,7 +72,7 @@ describe TenpaiWakaruMan::Set do
   end
 
   describe '#melded_type' do
-    subject { TenpaiWakaruMan::Set.new(tiles).melded_type }
+    subject { TenpaiWakaruMan::Meld.new(tiles).melded_type }
 
     context 'not melded' do
       let(:tiles) { "123m" }

@@ -10,7 +10,7 @@ describe TenpaiWakaruMan::Hand do
       it { is_expected.to contain_exactly(
         TenpaiWakaruMan::Hand.new(
           head: "Pd",
-          sets: [TenpaiWakaruMan::Set.new("SSSw"), TenpaiWakaruMan::Set.new("123m"), TenpaiWakaruMan::Set.new("345s"), TenpaiWakaruMan::Set.new("222p")]
+          melds: [TenpaiWakaruMan::Meld.new("SSSw"), TenpaiWakaruMan::Meld.new("123m"), TenpaiWakaruMan::Meld.new("345s"), TenpaiWakaruMan::Meld.new("222p")]
         )
       )}
     end
@@ -21,11 +21,11 @@ describe TenpaiWakaruMan::Hand do
       it { is_expected.to contain_exactly(
         TenpaiWakaruMan::Hand.new(
           head: "2m",
-          sets: [TenpaiWakaruMan::Set.new("111m"), TenpaiWakaruMan::Set.new("234m"), TenpaiWakaruMan::Set.new("345m"), TenpaiWakaruMan::Set.new("555m")]
+          melds: [TenpaiWakaruMan::Meld.new("111m"), TenpaiWakaruMan::Meld.new("234m"), TenpaiWakaruMan::Meld.new("345m"), TenpaiWakaruMan::Meld.new("555m")]
         ),
         TenpaiWakaruMan::Hand.new(
           head: "5m",
-          sets: [TenpaiWakaruMan::Set.new("111m"), TenpaiWakaruMan::Set.new("222m"), TenpaiWakaruMan::Set.new("345m"), TenpaiWakaruMan::Set.new("345m")]
+          melds: [TenpaiWakaruMan::Meld.new("111m"), TenpaiWakaruMan::Meld.new("222m"), TenpaiWakaruMan::Meld.new("345m"), TenpaiWakaruMan::Meld.new("345m")]
         )
       )}
     end
@@ -36,7 +36,7 @@ describe TenpaiWakaruMan::Hand do
       it { is_expected.to contain_exactly(
         TenpaiWakaruMan::Hand.new(
           head: "Pd",
-          sets: [TenpaiWakaruMan::Set.new("123ml"), TenpaiWakaruMan::Set.new("222pa"), TenpaiWakaruMan::Set.new("1111sr"), TenpaiWakaruMan::Set.new("SSSSw")]
+          melds: [TenpaiWakaruMan::Meld.new("123ml"), TenpaiWakaruMan::Meld.new("222pa"), TenpaiWakaruMan::Meld.new("1111sr"), TenpaiWakaruMan::Meld.new("SSSSw")]
         )
       )}
     end
