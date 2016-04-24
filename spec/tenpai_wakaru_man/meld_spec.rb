@@ -71,22 +71,37 @@ describe TenpaiWakaruMan::Meld do
     end
   end
 
-  describe '#revealed_type' do
-    subject { TenpaiWakaruMan::Meld.new(tiles).revealed_type }
+  describe '#type' do
+    subject { TenpaiWakaruMan::Meld.new(tiles).type }
 
-    context 'not revealed' do
+    context 'pair' do
+      let(:tiles) { "11m" }
+      it { is_expected.to eq(:pair) }
+    end
+
+    context 'run' do
       let(:tiles) { "123m" }
-      xit { is_expected.to be_nil }
+      it { is_expected.to eq(:run) }
     end
 
-    context 'chow' do
-      let(:tiles) { "123ml" }
-      xit { is_expected.to eq(:chow) }
-    end
-
-    context 'pong' do
+    context 'open triplet' do
       let(:tiles) { "111ml" }
-      xit { is_expected.to eq(:pong) }
+      it { is_expected.to eq(:open_triplet) }
+    end
+
+    context 'closed triplet' do
+      let(:tiles) { "111m" }
+      it { is_expected.to eq(:closed_triplet) }
+    end
+
+    context 'open quad' do
+      let(:tiles) { "1111ma" }
+      it { is_expected.to eq(:open_quad) }
+    end
+
+    context 'no role' do
+      let(:tiles) { "135m" }
+      it { is_expected.to eq(nil) }
     end
   end
 end
