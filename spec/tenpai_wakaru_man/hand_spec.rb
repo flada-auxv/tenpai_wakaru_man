@@ -41,4 +41,18 @@ describe TenpaiWakaruMan::Hand do
       )}
     end
   end
+
+  describe '#thirteen_orphans?' do
+    subject(:hands) { TenpaiWakaruMan::Hand.parse_from(str).thirteen_orphans? }
+
+    context '13 kinds, but is not only terminal and honor' do
+      let(:str) { "EEw123456m123s456p" }
+      it { is_expected.to be false }
+    end
+
+    context 'only terminal or honor' do
+      let(:str) { "119m19s19pESWNwPFCd" }
+      it { is_expected.to be true }
+    end
+  end
 end
