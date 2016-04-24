@@ -20,7 +20,7 @@ module TenpaiWakaruMan
       end
 
       def parse(tile_str)
-        args = scan(tile_str).map {|tiles| Meld.new(tiles) }.chunk {|meld| meld.melded? || meld.kong? }.each_with_object({melds: [], tiles: []}) {|(bool, value), hash|
+        args = scan(tile_str).map {|tiles| Meld.new(tiles) }.chunk {|meld| meld.revealed? }.each_with_object({melds: [], tiles: []}) {|(bool, value), hash|
           bool ? hash[:melds] += value : hash[:tiles] += value.map(&:tiles).flatten
         }
 

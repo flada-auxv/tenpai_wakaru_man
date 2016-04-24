@@ -81,7 +81,7 @@ module TenpaiWakaruMan
     end
 
     def meld_candidates
-      @tiles.combination(3).map {|tiles| Meld.new(tiles) }.select {|meld| meld.pong? || meld.chow? }
+      @tiles.combination(3).map {|tiles| Meld.new(tiles) }.select {|meld| meld.triplet? || meld.run? }
     end
 
     def meld_combination

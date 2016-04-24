@@ -39,15 +39,15 @@ module TenpaiWakaruMan
       @unique_count == 1 && @count == 2
     end
 
-    def pong?
+    def triplet?
       @unique_count == 1 && @count == 3
     end
 
-    def kong?
+    def quad?
       @unique_count == 1 && @count == 4
     end
 
-    def chow?
+    def run?
       return false unless @tiles.map {|tile| tile[-1] }.uniq.count == 1
 
       chow_candidates = @tiles.map {|tile| TILES[tile] }.select {|tile| tile > 6 }
@@ -57,8 +57,8 @@ module TenpaiWakaruMan
       [chow_candidates[0] + 2,  chow_candidates[1] + 1, chow_candidates[2]].uniq.count == 1
     end
 
-    def melded?
-      @melded ||= !!@msp_notation[/[#{Parser::MELDED_SYMBOLS}]/]
+    def revealed?
+      @revealed ||= quad? || !!@msp_notation[/[#{Parser::MELDED_SYMBOLS}]/]
     end
 
     private

@@ -19,36 +19,36 @@ describe TenpaiWakaruMan::Meld do
     end
   end
 
-  describe '#pong?' do
-    subject { TenpaiWakaruMan::Meld.new(tiles).pong? }
+  describe '#triplet?' do
+    subject { TenpaiWakaruMan::Meld.new(tiles).triplet? }
 
     context 'case1' do
       let(:tiles) { %w(1m 1m 1m) }
       it { is_expected.to be true }
     end
 
-    context 'kong' do
+    context 'quad' do
       let(:tiles) { %w(1m 1m 1m 1m) }
       it { is_expected.to be false }
     end
   end
 
-  describe '#kong?' do
-    subject { TenpaiWakaruMan::Meld.new(tiles).kong? }
+  describe '#quad?' do
+    subject { TenpaiWakaruMan::Meld.new(tiles).quad? }
 
     context 'case1' do
       let(:tiles) { %w(1m 1m 1m 1m) }
       it { is_expected.to be true }
     end
 
-    context 'pong' do
+    context 'triplet' do
       let(:tiles) { %w(1m 1m 1m) }
       it { is_expected.to be false }
     end
   end
 
-  describe '#chow?' do
-    subject { TenpaiWakaruMan::Meld.new(tiles).chow? }
+  describe '#run?' do
+    subject { TenpaiWakaruMan::Meld.new(tiles).run? }
 
     context 'case1' do
       let(:tiles) { %w(1m 2m 3m) }
@@ -71,10 +71,10 @@ describe TenpaiWakaruMan::Meld do
     end
   end
 
-  describe '#melded_type' do
-    subject { TenpaiWakaruMan::Meld.new(tiles).melded_type }
+  describe '#revealed_type' do
+    subject { TenpaiWakaruMan::Meld.new(tiles).revealed_type }
 
-    context 'not melded' do
+    context 'not revealed' do
       let(:tiles) { "123m" }
       xit { is_expected.to be_nil }
     end
