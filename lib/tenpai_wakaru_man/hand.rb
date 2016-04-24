@@ -18,7 +18,7 @@ module TenpaiWakaruMan
 
     def initialize(head: nil, tiles: [], sets: [])
       @head  = head
-      @tiles = tiles
+      @tiles = tiles.sort_by {|tile| TILES[tile] }
       @sets  = sets
 
       check_tile_count!
@@ -26,15 +26,6 @@ module TenpaiWakaruMan
 
     def ==(other)
       head == other.head && tiles == other.tiles && sets == other.sets
-    end
-
-    def <<(tiles)
-      case tiles
-      when Array
-        @tiles = (@tiles + tiles).sort_by {|tile| TILES[tile] }
-      when Set
-        @sets.push(tiles)
-      end
     end
 
     def dup

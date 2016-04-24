@@ -19,15 +19,11 @@ module TenpaiWakaruMan
       end
 
       def parse(tile_str)
-        scan(tile_str).each_with_object(Hand.new) {|tile, hand|
-          set = Set.new(tile)
-
-          if set.melded? || set.kong? # melded pong, melded kong, melded chow, concealed kong
-            hand << set
-          else # imcomplete set
-            hand << set.tiles
-          end
+        args = scan(tile_str).map {|tiles| Set.new(tiles) }.chunk {|set| set.melded? || set.kong? }.each_with_object({sets: [], tiles: []}) {|(bool, value), hash|
+          bool ? hash[:sets] += value : hash[:tiles] += value.map(&:tiles).flatten
         }
+
+        Hand.build(args)
       end
     end
   end
