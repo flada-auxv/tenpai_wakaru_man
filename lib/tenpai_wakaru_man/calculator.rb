@@ -1,4 +1,5 @@
 require 'tenpai_wakaru_man/ten'
+require 'tenpai_wakaru_man/fu_counter'
 
 module TenpaiWakaruMan
   class Calculator
@@ -12,26 +13,21 @@ module TenpaiWakaruMan
     end
 
     def calculate(tiles, options = {})
-      hand = Parser.parse(tiles)
-      return nil unless hand.ready?
+      return nil if (hands = Parser.parse(tiles).ready_hands).empty?
 
-      options[:tsumo_or_ron] = :ron
+      hands.map {|hand|
+        options[:tsumo_or_ron] = :ron
 
-      fu = FuCounter.count(hand)
-      han = HanCounter.count(hand)
+        fu = FuCounter.count(hand)
+        han = HanCounter.count(hand)
 
-      {fu: fu, han: han, ten: TEN[han.size][fu][options[:tsumo_or_ron].to_s]}
+        {fu: fu, han: han, ten: TEN[han.size][fu][options[:tsumo_or_ron].to_s]}
+      }.max {|hash| hash[:ten] }
     end
 
     class HanCounter
       def self.count(hand)
         %i(pinfu)
-      end
-    end
-
-    class FuCounter
-      def self.count(hand)
-        30
       end
     end
   end
