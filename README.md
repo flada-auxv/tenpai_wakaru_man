@@ -1,5 +1,5 @@
 # TenpaiWakaruMan
-[![Build Status](https://travis-ci.org/flada-auxv/jubilant-happiness.svg?branch=master)](https://travis-ci.org/flada-auxv/jubilant-happiness)
+[![Build Status](https://travis-ci.org/flada-auxv/tenpai_wakaru_man.svg?branch=master)](https://travis-ci.org/flada-auxv/tenpai_wakaru_man)
 
 ## Installation
 
