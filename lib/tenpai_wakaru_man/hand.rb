@@ -55,6 +55,14 @@ module TenpaiWakaruMan
       meld_combination.map {|melds| self.class.build(head: @head.dup, melds: melds) }.compact.select {|hand| hand.all_tiles == all_tiles }
     end
 
+    def ready?
+      TILES.each_key.any? {|tile|
+        hand = dup
+        hand.tiles << tile
+        hand.winning?
+      }
+    end
+
     def set_head(tile)
       self.head = tile
       @tiles.slice!(@tiles.index(tile), 2)

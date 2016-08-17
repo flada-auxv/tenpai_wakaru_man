@@ -9,6 +9,10 @@ module TenpaiWakaruMan
       def winning?(str)
         new.winning?(str)
       end
+
+      def ready?(str)
+        new.ready?(str)
+      end
     end
 
     def initialize
@@ -16,6 +20,10 @@ module TenpaiWakaruMan
 
     def winning?(tiles)
       Parser.parse(tiles).winning?
+    end
+
+    def ready?(tiles)
+      Parser.parse(tiles).ready?
     end
   end
 end

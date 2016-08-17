@@ -55,4 +55,43 @@ describe TenpaiWakaruMan::Hand do
       it { is_expected.to be true }
     end
   end
+
+  describe '#ready?' do
+    subject { TenpaiWakaruMan::Hand.parse_from(str).ready? }
+
+    context 'case1' do
+      let(:str) { "EEw123456m123s45p" }
+      it { is_expected.to be true }
+    end
+
+    context 'case2' do
+      let(:str) { "EEw123456m123s46p" }
+      it { is_expected.to be true }
+    end
+
+    context 'case3' do
+      let(:str) { "EEw123456m123s47p" }
+      it { is_expected.to be false }
+    end
+
+    context 'case4' do
+      let(:str) { "EEw123456m123s44p" }
+      it { is_expected.to be true }
+    end
+
+    context 'case5' do
+      let(:str) { "1112223344555m" }
+      it { is_expected.to be true }
+    end
+
+    context 'seven_pairs' do
+      let(:str) { "EEw112233m11s556p" }
+      it { is_expected.to be true }
+    end
+
+    context 'thirteen_orphans' do
+      let(:str) { "19m19s19pESWNwPFCd" }
+      it { is_expected.to be true }
+    end
+  end
 end
