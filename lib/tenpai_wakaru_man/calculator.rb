@@ -13,7 +13,7 @@ module TenpaiWakaruMan
     end
 
     def calculate(tiles, options = {})
-      return nil if (hands = Parser.parse(tiles).ready_hands).empty?
+      return nil if (hands = Parser.parse(tiles).winning_hands).empty?
 
       hands.map {|hand|
         options[:tsumo_or_ron] = :ron

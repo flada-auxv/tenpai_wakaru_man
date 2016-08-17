@@ -42,16 +42,16 @@ module TenpaiWakaruMan
     alias :to_s :to_msp_notation
 
     def winning?
-      !ready_hands.empty?
+      !winning_hands.empty?
     end
 
-    def ready_hands
+    def winning_hands
       detect_special_form!
 
-      @ready_hands ||= head_candidates.map {|head| dup.set_head(head) }.map {|hand| hand.detect_ready_hands }.reject(&:empty?).flatten
+      @winning_hands ||= head_candidates.map {|head| dup.set_head(head) }.map {|hand| hand.detect_winning_hands }.reject(&:empty?).flatten
     end
 
-    def detect_ready_hands
+    def detect_winning_hands
       meld_combination.map {|melds| self.class.build(head: @head.dup, melds: melds) }.compact.select {|hand| hand.all_tiles == all_tiles }
     end
 
@@ -101,7 +101,7 @@ module TenpaiWakaruMan
     end
 
     def detect_special_form!
-      @ready_hands = Array(dup) if thirteen_orphans? || seven_pairs?
+      @winning_hands = Array(dup) if thirteen_orphans? || seven_pairs?
     end
 
     def check_tile_count!
