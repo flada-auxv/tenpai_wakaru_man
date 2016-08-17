@@ -41,7 +41,7 @@ module TenpaiWakaruMan
     end
     alias :to_s :to_msp_notation
 
-    def ready?
+    def winning?
       !ready_hands.empty?
     end
 
