@@ -42,7 +42,7 @@ describe TenpaiWakaruMan::Parser do
 
       it { expect(hand.tiles).to eq(%w(Pd Pd)) }
       it { expect(hand.melds).to eq([
-        TenpaiWakaruMan::Meld.new("123ml"), TenpaiWakaruMan::Meld.new("222pa"), TenpaiWakaruMan::Meld.new("1111sr"), TenpaiWakaruMan::Meld.new("SSSSw")
+        TenpaiWakaruMan::Meld.new("1111sr"), TenpaiWakaruMan::Meld.new("123ml"), TenpaiWakaruMan::Meld.new("222pa"), TenpaiWakaruMan::Meld.new("SSSSw")
       ]) }
     end
   end

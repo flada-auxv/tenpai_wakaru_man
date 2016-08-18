@@ -19,7 +19,7 @@ module TenpaiWakaruMan
     def initialize(head: nil, tiles: [], melds: [])
       @head  = head
       @tiles = tiles.sort_by {|tile| TILES[tile] }
-      @melds  = melds
+      @melds  = melds.sort
 
       check_tile_count!
     end

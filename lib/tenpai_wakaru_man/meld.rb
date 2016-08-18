@@ -24,7 +24,7 @@ module TenpaiWakaruMan
     end
 
     def <=>(other)
-      @tiles.hash <=> other.tiles.hash
+      msp_notation <=> other.msp_notation
     end
 
     def inspect
