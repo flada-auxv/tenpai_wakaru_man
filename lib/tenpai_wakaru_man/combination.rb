@@ -5,7 +5,7 @@ module TenpaiWakaruMan
       return array.map {|elem| Array(elem) } if num == 1
 
       each_with_rest(array).with_object([]) {|(elem, rest), result|
-        result.push(*_combination(rest, [elem], num))
+        result.push(*_combination(rest, Array(elem), num))
       }
     end
 
