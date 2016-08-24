@@ -90,6 +90,10 @@ module TenpaiWakaruMan
       count_by.keys.count == 13 && all_tiles.all? {|tile| tile[/[#{Parser::HONOR_SYMBOLS}]/] || tile[/[19]/] }
     end
 
+    def meld_combination
+      (@melds + meld_candidates).combination(4).to_a.uniq {|meld_arr| meld_arr.map(&:tiles).hash }
+    end
+
     private
 
     def head_candidates
@@ -98,10 +102,6 @@ module TenpaiWakaruMan
 
     def meld_candidates
       @tiles.combination(3).map {|tiles| Meld.new(tiles) }.select {|meld| meld.triplet? || meld.run? }
-    end
-
-    def meld_combination
-      (@melds + meld_candidates).combination(4).to_a.uniq {|meld_arr| meld_arr.map(&:tiles).hash }
     end
 
     def count_by
