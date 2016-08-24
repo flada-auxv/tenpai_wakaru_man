@@ -28,6 +28,8 @@ module TenpaiWakaruMan
     end
 
     def _combination(array, candidates, num, result = [])
+      return [] if (array.count + candidates.count) < num
+
       each_with_rest(array).with_object(result) {|(elem, rest), result|
         _candidates = candidates.dup << elem
 
