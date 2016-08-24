@@ -33,12 +33,14 @@ describe TenpaiWakaruMan::Hand do
     context 'case3' do
       let(:str) { "123ml222pa1111srSSSSwPPd" }
 
-      it { is_expected.to contain_exactly(
-        TenpaiWakaruMan::Hand.new(
-          head: "Pd",
-          melds: [TenpaiWakaruMan::Meld.new("123ml"), TenpaiWakaruMan::Meld.new("222pa"), TenpaiWakaruMan::Meld.new("1111sr"), TenpaiWakaruMan::Meld.new("SSSSw")]
+      xit '暗槓だということが明示的ではないのに Meld として扱ってるのはおかしい。そして暗槓を明示する記号はまだない。' do
+        is_expected.to contain_exactly(
+          TenpaiWakaruMan::Hand.new(
+            head: "Pd",
+            melds: [TenpaiWakaruMan::Meld.new("123ml"), TenpaiWakaruMan::Meld.new("222pa"), TenpaiWakaruMan::Meld.new("1111sr"), TenpaiWakaruMan::Meld.new("SSSSw")]
+          )
         )
-      )}
+      end
     end
   end
 
