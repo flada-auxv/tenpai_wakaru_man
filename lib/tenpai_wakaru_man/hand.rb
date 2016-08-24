@@ -1,7 +1,10 @@
 require 'tenpai_wakaru_man/errors'
+require 'tenpai_wakaru_man/combination'
 
 module TenpaiWakaruMan
   class Hand
+    include Combination
+
     attr_accessor :head, :tiles, :melds
 
     class << self
@@ -91,7 +94,7 @@ module TenpaiWakaruMan
     end
 
     def meld_combination
-      (@melds + meld_candidates).combination(4).to_a.uniq {|meld_arr| meld_arr.map(&:tiles).hash }
+      combination((@melds + meld_candidates), 4).to_a.uniq {|meld_arr| meld_arr.map(&:tiles).hash }
     end
 
     private
@@ -100,16 +103,16 @@ module TenpaiWakaruMan
       @tiles.uniq.select {|t| @tiles.count(t) >= 2 }
     end
 
+    def meld_candidates
+      (triplet_candidates + run_candidates).sort
+    end
+
     def triplet_candidates
       count_by.select {|tile, count| count >= 3 }.keys.map {|t| Meld.new([t, t, t]) }
     end
 
     def run_candidates
-      @tiles.combination(3).map {|tiles| Meld.new(tiles) }.select {|meld| meld.run? }
-    end
-
-    def meld_candidates
-      (triplet_candidates + run_candidates).sort
+      combination(@tiles, 3).map {|tiles| Meld.new(tiles) }.select {|meld| meld.run? }
     end
 
     def count_by
