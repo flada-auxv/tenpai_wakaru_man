@@ -100,8 +100,16 @@ module TenpaiWakaruMan
       @tiles.uniq.select {|t| @tiles.count(t) >= 2 }
     end
 
+    def triplet_candidates
+      count_by.select {|tile, count| count >= 3 }.keys.map {|t| Meld.new([t, t, t]) }
+    end
+
+    def run_candidates
+      @tiles.combination(3).map {|tiles| Meld.new(tiles) }.select {|meld| meld.run? }
+    end
+
     def meld_candidates
-      @tiles.combination(3).map {|tiles| Meld.new(tiles) }.select {|meld| meld.triplet? || meld.run? }
+      (triplet_candidates + run_candidates).sort
     end
 
     def count_by
