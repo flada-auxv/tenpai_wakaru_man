@@ -1,7 +1,7 @@
 module TenpaiWakaruMan
   module Combination
     def combination(array, num)
-      return [] if num == 0
+      return [[]] if num == 0
       return array.map {|elem| Array(elem) } if num == 1
 
       each_with_rest(array).with_object([]) {|(elem, rest), result|
