@@ -9,7 +9,12 @@ module TenpaiWakaruMan
           result.push(*_combination(rest, Array(elem), num))
         }.each
 
-      block_given? ? enumerator.each {|elem| yield elem } : enumerator
+      if block_given?
+        enumerator.each {|elem| yield elem }
+        array
+      else
+        enumerator
+      end
     end
 
     private
