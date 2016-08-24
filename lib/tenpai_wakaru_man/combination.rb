@@ -4,9 +4,12 @@ module TenpaiWakaruMan
       return [[]] if num == 0
       return array.map {|elem| Array(elem) } if num == 1
 
-      each_with_rest(array).with_object([]) {|(elem, rest), result|
-        result.push(*_combination(rest, Array(elem), num))
-      }
+      enumerator =
+        each_with_rest(array).with_object([]) {|(elem, rest), result|
+          result.push(*_combination(rest, Array(elem), num))
+        }.each
+
+      block_given? ? enumerator.each {|elem| yield elem } : enumerator
     end
 
     private
