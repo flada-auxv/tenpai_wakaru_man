@@ -97,6 +97,8 @@ module TenpaiWakaruMan
       }.uniq {|meld_arr| meld_arr.map(&:tiles).hash }
     end
 
+    private
+
     def _combination(candidates, current_result, tiles, result = [])
       return [] if (candidates.count + current_result.count) < 4
 
@@ -130,8 +132,6 @@ module TenpaiWakaruMan
 
       deleted.compact.count == meld.tiles.count ? copied : nil
     end
-
-    private
 
     def head_candidates
       @tiles.uniq.select {|t| @tiles.count(t) >= 2 }
