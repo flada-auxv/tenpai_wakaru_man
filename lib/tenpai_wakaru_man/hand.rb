@@ -1,10 +1,7 @@
 require 'tenpai_wakaru_man/errors'
-require 'tenpai_wakaru_man/combination'
 
 module TenpaiWakaruMan
   class Hand
-    include Combination
-
     attr_accessor :head, :tiles, :melds
 
     class << self
@@ -94,7 +91,48 @@ module TenpaiWakaruMan
     end
 
     def meld_combination
-      combination((@melds + meld_candidates), 4).to_a.uniq {|meld_arr| meld_arr.map(&:tiles).hash }
+      combination((@melds + meld_candidates), all_tiles).to_a.uniq {|meld_arr| meld_arr.map(&:tiles).hash }
+    end
+
+    def combination(candidates, tiles)
+      each_with_rest(candidates).with_object([]) {|(meld, rest_candidates), result|
+        rest_tiles = extract_meld(tiles, meld)
+        result.push(*_combination(rest_candidates, Array(meld), rest_tiles))
+      }
+    end
+
+    def _combination(candidates, current_result, tiles, result = [])
+      return [] if (candidates.count + current_result.count) < 4
+
+      each_with_rest(candidates).with_object(result) {|(meld, rest_candidates), result|
+        next unless rest_tiles = extract_meld(tiles, meld)
+
+        _current_result = current_result.dup << meld
+
+        if _current_result.count == 4
+          result << _current_result
+        else
+          _combination(rest_candidates, _current_result, rest_tiles, result)
+        end
+      }
+    end
+
+    def each_with_rest(array)
+      if block_given?
+        array.each_with_index {|elem, i| yield elem, array[i+1..-1] }
+      else
+        array.map.with_index {|elem, i| [elem, array[i+1..-1]] }.each
+      end
+    end
+
+    def extract_meld(tiles, meld)
+      copied = tiles.dup
+
+      deleted = meld.tiles.map {|tile|
+        (index = copied.find_index(tile)) ? copied.delete_at(index) : nil
+      }
+
+      deleted.compact.count == meld.tiles.count ? copied : nil
     end
 
     private
@@ -112,7 +150,7 @@ module TenpaiWakaruMan
     end
 
     def run_candidates
-      combination(@tiles, 3).map {|tiles| Meld.new(tiles) }.select {|meld| meld.run? }
+      @tiles.combination(3).map {|tiles| Meld.new(tiles) }.select {|meld| meld.run? }
     end
 
     def count_by
