@@ -91,14 +91,10 @@ module TenpaiWakaruMan
     end
 
     def meld_combination
-      combination((@melds + meld_candidates), all_tiles).to_a.uniq {|meld_arr| meld_arr.map(&:tiles).hash }
-    end
-
-    def combination(candidates, tiles)
-      each_with_rest(candidates).with_object([]) {|(meld, rest_candidates), result|
-        rest_tiles = extract_meld(tiles, meld)
+      each_with_rest((@melds + meld_candidates)).with_object([]) {|(meld, rest_candidates), result|
+        rest_tiles = extract_meld(all_tiles, meld)
         result.push(*_combination(rest_candidates, Array(meld), rest_tiles))
-      }
+      }.uniq {|meld_arr| meld_arr.map(&:tiles).hash }
     end
 
     def _combination(candidates, current_result, tiles, result = [])
