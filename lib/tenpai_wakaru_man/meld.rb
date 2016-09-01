@@ -28,7 +28,7 @@ module TenpaiWakaruMan
     end
 
     def inspect
-      "#<#{self.class.name}:\"#{@msp_notation}\">"
+      "#<Meld:\"#{@msp_notation}\">"
     end
 
     def to_s

@@ -33,7 +33,7 @@ module TenpaiWakaruMan
     end
 
     def inspect
-      "#<#{self.class.name}:\"#{to_msp_notation}\", @head=#{@head.inspect}, @melds=#{@melds.map(&:to_s)}, @tiles=#{@tiles}>"
+      "#<Hand:\"#{to_msp_notation}\", @head=#{@head.inspect}, @melds=#{@melds.map(&:to_s)}, @tiles=#{@tiles}>"
     end
 
     def to_msp_notation
