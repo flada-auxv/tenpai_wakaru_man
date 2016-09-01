@@ -43,13 +43,17 @@ module TenpaiWakaruMan
     def triplet?; @unique_count == 1 && @count == 3 end
     def quad?;    @unique_count == 1 && @count == 4 end
     def run?
-      return false unless @tiles.map {|tile| tile[-1] }.uniq.count == 1
+      return false unless only_one_suit?
 
       chow_candidates = @tiles.map {|tile| TILES[tile] }.select {|tile| tile > 6 }
 
       return false unless chow_candidates.uniq.count == 3
 
       [chow_candidates[0] + 2,  chow_candidates[1] + 1, chow_candidates[2]].uniq.count == 1
+    end
+
+    def only_one_suit?
+      @tiles.map {|tile| tile[-1] }.uniq.count == 1
     end
 
     def open_triplet?;   open?   && triplet? end
