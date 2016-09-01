@@ -15,9 +15,6 @@ module TenpaiWakaruMan
       end
     end
 
-    def initialize
-    end
-
     def winning?(tiles)
       Parser.parse(tiles).winning?
     end
