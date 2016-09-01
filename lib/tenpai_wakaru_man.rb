@@ -7,20 +7,12 @@ module TenpaiWakaruMan
   class Detector
     class << self
       def winning?(str)
-        new.winning?(str)
+        Parser.parse(str).winning?
       end
 
       def ready?(str)
-        new.ready?(str)
+        Parser.parse(str).ready?
       end
-    end
-
-    def winning?(tiles)
-      Parser.parse(tiles).winning?
-    end
-
-    def ready?(tiles)
-      Parser.parse(tiles).ready?
     end
   end
 end
