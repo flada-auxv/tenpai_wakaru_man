@@ -20,7 +20,62 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+# ready(聴牌) or not
+TenpaiWakaruMan.ready?('123m123p23sSSSwPPd') # => true
+
+# win(和了) or not
+TenpaiWakaruMan.win?('234m234m234m222p55m') # => true
+
+# You can also like this
+TenpaiWakaruMan.win?('222333444455m222p') # => true
+```
+<table>
+  <tr>
+    <td>🀀</td><td>Ew</td>
+    <td>🀁</td><td>Sw</td>
+    <td>🀂</td><td>Ww</td>
+    <td>🀃</td><td>Nw</td>
+  </tr>
+  <tr>
+    <td>🀄</td><td>Cd</td>
+    <td>🀅</td><td>Fd</td>
+    <td>🀆</td><td>Pd</td>
+  </tr>
+  <tr>
+    <td>🀇</td><td>1m</td>
+    <td>🀈</td><td>2m</td>
+    <td>🀉</td><td>3m</td>
+    <td>🀊</td><td>4m</td>
+    <td>🀋</td><td>5m</td>
+    <td>🀌</td><td>6m</td>
+    <td>🀍</td><td>7m</td>
+    <td>🀎</td><td>8m</td>
+    <td>🀏</td><td>9m</td>
+  </tr>
+  <tr>
+    <td>🀐</td><td>1s</td>
+    <td>🀑</td><td>2s</td>
+    <td>🀒</td><td>3s</td>
+    <td>🀓</td><td>4s</td>
+    <td>🀔</td><td>5s</td>
+    <td>🀕</td><td>6s</td>
+    <td>🀖</td><td>7s</td>
+    <td>🀗</td><td>8s</td>
+    <td>🀘</td><td>9s</td>
+  </tr>
+  <tr>
+    <td>🀙</td><td>1p</td>
+    <td>🀚</td><td>2p</td>
+    <td>🀛</td><td>3p</td>
+    <td>🀜</td><td>4p</td>
+    <td>🀝</td><td>5p</td>
+    <td>🀞</td><td>6p</td>
+    <td>🀟</td><td>7p</td>
+    <td>🀠</td><td>8p</td>
+    <td>🀡</td><td>9p</td>
+  </tr>
+</table>
 
 ## Development
 
