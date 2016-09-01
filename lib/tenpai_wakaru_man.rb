@@ -4,15 +4,13 @@ require "tenpai_wakaru_man/parser"
 require "tenpai_wakaru_man/calculator"
 
 module TenpaiWakaruMan
-  class Detector
-    class << self
-      def win?(str)
-        Parser.parse(str).win?
-      end
+  class << self
+    def win?(str)
+      Parser.parse(str).win?
+    end
 
-      def ready?(str)
-        Parser.parse(str).ready?
-      end
+    def ready?(str)
+      Parser.parse(str).ready?
     end
   end
 end
