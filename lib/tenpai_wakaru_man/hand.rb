@@ -91,7 +91,7 @@ module TenpaiWakaruMan
     end
 
     def meld_combination
-      each_with_rest((@melds + meld_candidates)).with_object([]) {|(meld, rest_candidates), result|
+      each_with_rest((@melds + meld_pattern)).with_object([]) {|(meld, rest_candidates), result|
         rest_tiles = extract_meld(all_tiles, meld)
         result.push(*_combination(rest_candidates, Array(meld), rest_tiles))
       }.uniq {|meld_arr| meld_arr.map(&:tiles).hash }
@@ -137,15 +137,15 @@ module TenpaiWakaruMan
       @tiles.uniq.select {|t| @tiles.count(t) >= 2 }
     end
 
-    def meld_candidates
-      (triplet_candidates + run_candidates).sort
+    def meld_pattern
+      (triplet_pattern + run_pattern).sort
     end
 
-    def triplet_candidates
+    def triplet_pattern
       count_by.select {|tile, count| count >= 3 }.keys.map {|t| Meld.new([t, t, t]) }
     end
 
-    def run_candidates
+    def run_pattern
       @tiles.combination(3).map {|tiles| Meld.new(tiles) }.select {|meld| meld.run? }
     end
 
