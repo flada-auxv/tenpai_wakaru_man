@@ -41,7 +41,7 @@ module TenpaiWakaruMan
     end
     alias :to_s :to_msp_notation
 
-    def winning?
+    def win?
       !winning_hands.empty?
     end
 
@@ -59,7 +59,7 @@ module TenpaiWakaruMan
       TILES.each_key.any? {|tile|
         hand = dup
         hand.tiles << tile
-        hand.winning?
+        hand.win?
       }
     end
 

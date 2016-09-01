@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe TenpaiWakaruMan::Detector do
-  describe '.winning?' do
-    subject { TenpaiWakaruMan::Detector.winning?(str) }
+  describe '.win?' do
+    subject { TenpaiWakaruMan::Detector.win?(str) }
 
     context 'case1' do
       let(:str) { "123m222p345sSSSwPPd" }

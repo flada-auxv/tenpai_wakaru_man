@@ -6,8 +6,8 @@ require "tenpai_wakaru_man/calculator"
 module TenpaiWakaruMan
   class Detector
     class << self
-      def winning?(str)
-        Parser.parse(str).winning?
+      def win?(str)
+        Parser.parse(str).win?
       end
 
       def ready?(str)
