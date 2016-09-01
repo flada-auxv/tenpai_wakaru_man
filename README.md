@@ -1,4 +1,5 @@
 # TenpaiWakaruMan
+[![Gem Version](https://badge.fury.io/rb/tenpai_wakaru_man.svg)](https://badge.fury.io/rb/tenpai_wakaru_man)
 [![Build Status](https://travis-ci.org/flada-auxv/tenpai_wakaru_man.svg?branch=master)](https://travis-ci.org/flada-auxv/tenpai_wakaru_man)
 
 ## Installation
