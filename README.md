@@ -32,48 +32,48 @@ TenpaiWakaruMan.win?('222333444455m222p') # => true
 ```
 <table>
   <tr>
-    <td>🀀</td><td>Ew</td>
-    <td>🀁</td><td>Sw</td>
-    <td>🀂</td><td>Ww</td>
-    <td>🀃</td><td>Nw</td>
+    <td><img src="https://cdn.rawgit.com/mtsmfm/tegaki-jan/master/svg/east.svg" width="20"/></td><td>Ew</td>
+    <td><img src="https://cdn.rawgit.com/mtsmfm/tegaki-jan/master/svg/south.svg" width="20"/></td><td>Sw</td>
+    <td><img src="https://cdn.rawgit.com/mtsmfm/tegaki-jan/master/svg/west.svg" width="20"/></td><td>Ww</td>
+    <td><img src="https://cdn.rawgit.com/mtsmfm/tegaki-jan/master/svg/north.svg" width="20"/></td><td>Nw</td>
   </tr>
   <tr>
-    <td>🀄</td><td>Cd</td>
-    <td>🀅</td><td>Fd</td>
-    <td>🀆</td><td>Pd</td>
+    <td><img src="https://cdn.rawgit.com/mtsmfm/tegaki-jan/master/svg/chun.svg" width="20"/></td><td>Cd</td>
+    <td><img src="https://cdn.rawgit.com/mtsmfm/tegaki-jan/master/svg/hatsu.svg" width="20"/></td><td>Fd</td>
+    <td><img src="https://cdn.rawgit.com/mtsmfm/tegaki-jan/master/svg/haku.svg" width="20"/></td><td>Pd</td>
   </tr>
   <tr>
-    <td>🀇</td><td>1m</td>
-    <td>🀈</td><td>2m</td>
-    <td>🀉</td><td>3m</td>
-    <td>🀊</td><td>4m</td>
-    <td>🀋</td><td>5m</td>
-    <td>🀌</td><td>6m</td>
-    <td>🀍</td><td>7m</td>
-    <td>🀎</td><td>8m</td>
-    <td>🀏</td><td>9m</td>
+    <td><img src="https://cdn.rawgit.com/mtsmfm/tegaki-jan/master/svg/man_1.svg" width="20"/></td><td>1m</td>
+    <td><img src="https://cdn.rawgit.com/mtsmfm/tegaki-jan/master/svg/man_2.svg" width="20"/></td><td>2m</td>
+    <td><img src="https://cdn.rawgit.com/mtsmfm/tegaki-jan/master/svg/man_3.svg" width="20"/></td><td>3m</td>
+    <td><img src="https://cdn.rawgit.com/mtsmfm/tegaki-jan/master/svg/man_4.svg" width="20"/></td><td>4m</td>
+    <td><img src="https://cdn.rawgit.com/mtsmfm/tegaki-jan/master/svg/man_5.svg" width="20"/></td><td>5m</td>
+    <td><img src="https://cdn.rawgit.com/mtsmfm/tegaki-jan/master/svg/man_6.svg" width="20"/></td><td>6m</td>
+    <td><img src="https://cdn.rawgit.com/mtsmfm/tegaki-jan/master/svg/man_7.svg" width="20"/></td><td>7m</td>
+    <td><img src="https://cdn.rawgit.com/mtsmfm/tegaki-jan/master/svg/man_8.svg" width="20"/></td><td>8m</td>
+    <td><img src="https://cdn.rawgit.com/mtsmfm/tegaki-jan/master/svg/man_9.svg" width="20"/></td><td>9m</td>
   </tr>
   <tr>
-    <td>🀐</td><td>1s</td>
-    <td>🀑</td><td>2s</td>
-    <td>🀒</td><td>3s</td>
-    <td>🀓</td><td>4s</td>
-    <td>🀔</td><td>5s</td>
-    <td>🀕</td><td>6s</td>
-    <td>🀖</td><td>7s</td>
-    <td>🀗</td><td>8s</td>
-    <td>🀘</td><td>9s</td>
+    <td><img src="https://cdn.rawgit.com/mtsmfm/tegaki-jan/master/svg/sou_1.svg" width="20"/></td><td>1s</td>
+    <td><img src="https://cdn.rawgit.com/mtsmfm/tegaki-jan/master/svg/sou_2.svg" width="20"/></td><td>2s</td>
+    <td><img src="https://cdn.rawgit.com/mtsmfm/tegaki-jan/master/svg/sou_3.svg" width="20"/></td><td>3s</td>
+    <td><img src="https://cdn.rawgit.com/mtsmfm/tegaki-jan/master/svg/sou_4.svg" width="20"/></td><td>4s</td>
+    <td><img src="https://cdn.rawgit.com/mtsmfm/tegaki-jan/master/svg/sou_5.svg" width="20"/></td><td>5s</td>
+    <td><img src="https://cdn.rawgit.com/mtsmfm/tegaki-jan/master/svg/sou_6.svg" width="20"/></td><td>6s</td>
+    <td><img src="https://cdn.rawgit.com/mtsmfm/tegaki-jan/master/svg/sou_7.svg" width="20"/></td><td>7s</td>
+    <td><img src="https://cdn.rawgit.com/mtsmfm/tegaki-jan/master/svg/sou_8.svg" width="20"/></td><td>8s</td>
+    <td><img src="https://cdn.rawgit.com/mtsmfm/tegaki-jan/master/svg/sou_9.svg" width="20"/></td><td>9s</td>
   </tr>
   <tr>
-    <td>🀙</td><td>1p</td>
-    <td>🀚</td><td>2p</td>
-    <td>🀛</td><td>3p</td>
-    <td>🀜</td><td>4p</td>
-    <td>🀝</td><td>5p</td>
-    <td>🀞</td><td>6p</td>
-    <td>🀟</td><td>7p</td>
-    <td>🀠</td><td>8p</td>
-    <td>🀡</td><td>9p</td>
+    <td><img src="https://cdn.rawgit.com/mtsmfm/tegaki-jan/master/svg/pin_1.svg" width="20"/></td><td>1p</td>
+    <td><img src="https://cdn.rawgit.com/mtsmfm/tegaki-jan/master/svg/pin_2.svg" width="20"/></td><td>2p</td>
+    <td><img src="https://cdn.rawgit.com/mtsmfm/tegaki-jan/master/svg/pin_3.svg" width="20"/></td><td>3p</td>
+    <td><img src="https://cdn.rawgit.com/mtsmfm/tegaki-jan/master/svg/pin_4.svg" width="20"/></td><td>4p</td>
+    <td><img src="https://cdn.rawgit.com/mtsmfm/tegaki-jan/master/svg/pin_5.svg" width="20"/></td><td>5p</td>
+    <td><img src="https://cdn.rawgit.com/mtsmfm/tegaki-jan/master/svg/pin_6.svg" width="20"/></td><td>6p</td>
+    <td><img src="https://cdn.rawgit.com/mtsmfm/tegaki-jan/master/svg/pin_7.svg" width="20"/></td><td>7p</td>
+    <td><img src="https://cdn.rawgit.com/mtsmfm/tegaki-jan/master/svg/pin_8.svg" width="20"/></td><td>8p</td>
+    <td><img src="https://cdn.rawgit.com/mtsmfm/tegaki-jan/master/svg/pin_9.svg" width="20"/></td><td>9p</td>
   </tr>
 </table>
 
