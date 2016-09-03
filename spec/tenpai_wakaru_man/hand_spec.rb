@@ -10,7 +10,7 @@ describe TenpaiWakaruMan::Hand do
       it { is_expected.to contain_exactly(
         TenpaiWakaruMan::Hand.new(
           head: "Pd",
-          melds: [TenpaiWakaruMan::Meld.new("SSSw"), TenpaiWakaruMan::Meld.new("123m"), TenpaiWakaruMan::Meld.new("345s"), TenpaiWakaruMan::Meld.new("222p")]
+          melds: [TenpaiWakaruMan::CompletedMeld.new("SSSw"), TenpaiWakaruMan::CompletedMeld.new("123m"), TenpaiWakaruMan::CompletedMeld.new("345s"), TenpaiWakaruMan::CompletedMeld.new("222p")]
         )
       )}
     end
@@ -21,11 +21,11 @@ describe TenpaiWakaruMan::Hand do
       it { is_expected.to contain_exactly(
         TenpaiWakaruMan::Hand.new(
           head: "2m",
-          melds: [TenpaiWakaruMan::Meld.new("111m"), TenpaiWakaruMan::Meld.new("234m"), TenpaiWakaruMan::Meld.new("345m"), TenpaiWakaruMan::Meld.new("555m")]
+          melds: [TenpaiWakaruMan::CompletedMeld.new("111m"), TenpaiWakaruMan::CompletedMeld.new("234m"), TenpaiWakaruMan::CompletedMeld.new("345m"), TenpaiWakaruMan::CompletedMeld.new("555m")]
         ),
         TenpaiWakaruMan::Hand.new(
           head: "5m",
-          melds: [TenpaiWakaruMan::Meld.new("111m"), TenpaiWakaruMan::Meld.new("222m"), TenpaiWakaruMan::Meld.new("345m"), TenpaiWakaruMan::Meld.new("345m")]
+          melds: [TenpaiWakaruMan::CompletedMeld.new("111m"), TenpaiWakaruMan::CompletedMeld.new("222m"), TenpaiWakaruMan::CompletedMeld.new("345m"), TenpaiWakaruMan::CompletedMeld.new("345m")]
         )
       )}
     end
@@ -33,11 +33,11 @@ describe TenpaiWakaruMan::Hand do
     context 'case3' do
       let(:str) { "123ml222pa1111srSSSSwPPd" }
 
-      xit '暗槓だということが明示的ではないのに Meld として扱ってるのはおかしい。そして暗槓を明示する記号はまだない。' do
+      xit '暗槓だということが明示的ではないのに CompletedMeld として扱ってるのはおかしい。そして暗槓を明示する記号はまだない。' do
         is_expected.to contain_exactly(
           TenpaiWakaruMan::Hand.new(
             head: "Pd",
-            melds: [TenpaiWakaruMan::Meld.new("123ml"), TenpaiWakaruMan::Meld.new("222pa"), TenpaiWakaruMan::Meld.new("1111sr"), TenpaiWakaruMan::Meld.new("SSSSw")]
+            melds: [TenpaiWakaruMan::CompletedMeld.new("123ml"), TenpaiWakaruMan::CompletedMeld.new("222pa"), TenpaiWakaruMan::CompletedMeld.new("1111sr"), TenpaiWakaruMan::CompletedMeld.new("SSSSw")]
           )
         )
       end

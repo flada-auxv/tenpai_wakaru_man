@@ -1,5 +1,5 @@
 require 'tenpai_wakaru_man/hand'
-require 'tenpai_wakaru_man/meld'
+require 'tenpai_wakaru_man/meld/completed_meld'
 
 module TenpaiWakaruMan
   class Parser
@@ -25,7 +25,7 @@ module TenpaiWakaruMan
       end
 
       def parse(tile_str)
-        args = scan(tile_str).map {|tiles| Meld.new(tiles) }.chunk {|meld| meld.revealed? }.each_with_object({melds: [], tiles: []}) {|(bool, value), hash|
+        args = scan(tile_str).map {|tiles| CompletedMeld.new(tiles) }.chunk {|meld| meld.revealed? }.each_with_object({melds: [], tiles: []}) {|(bool, value), hash|
           bool ? hash[:melds] += value : hash[:tiles] += value.map(&:tiles).flatten
         }
 

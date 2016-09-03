@@ -1,29 +1,15 @@
+require "tenpai_wakaru_man/meld/meld"
+
 module TenpaiWakaruMan
-  class ImcompletedMeld
-    attr_accessor :tiles, :msp_notation
-
+  class ImcompletedMeld < Meld
     def initialize(tiles)
-      case tiles
-      when String
-        @msp_notation = tiles
-        @tiles = Parser.split(@msp_notation)
-      when Array
-        @tiles = tiles.sort_by {|tile| TILES[tile] }
-        @msp_notation = to_msp_notation
-      end
+      super
 
-      # XXX hm...?
-      return nil unless @tiles.count == 2
-
-      @unique_count = @tiles.uniq.count
+      return nil if @tiles.count == 2
     end
 
     def inspect
       "#<ImcompletedMeld:\"#{@msp_notation}\">"
-    end
-
-    def to_s
-      @msp_notation
     end
 
     def wanting_tile
@@ -68,20 +54,6 @@ module TenpaiWakaruMan
         when 2; :kanchan
         else nil
         end
-    end
-
-    def include_terminal?
-      /[19]/.match?(@msp_notation)
-    end
-
-    def only_one_suit?
-      @tiles.map {|tile| tile[-1] }.uniq.count == 1
-    end
-
-    private
-
-    def to_msp_notation
-      @tiles.sort_by {|tile| TILES[tile] }.map {|tile| tile.split("") }.chunk {|_, suite| suite }.map {|key, arr| arr.map(&:first).join << key }.join
     end
   end
 end

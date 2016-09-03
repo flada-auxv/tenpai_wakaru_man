@@ -1,38 +1,18 @@
+require "tenpai_wakaru_man/meld/meld"
 require "tenpai_wakaru_man/tiles"
 require "tenpai_wakaru_man/parser"
 
 module TenpaiWakaruMan
-  class Meld
-    attr_accessor :tiles, :msp_notation
 
+  class CompletedMeld < Meld
     def initialize(tiles)
-      case tiles
-      when String
-        @msp_notation = tiles
-        @tiles = Parser.split(@msp_notation)
-      when Array
-        @tiles = tiles.sort_by {|tile| TILES[tile] }
-        @msp_notation = to_msp_notation
-      end
+      super
 
-      @unique_count = @tiles.uniq.count
-      @count = @tiles.count
-    end
-
-    def ==(other)
-      @msp_notation == other.msp_notation
-    end
-
-    def <=>(other)
-      msp_notation <=> other.msp_notation
+      return nil if @tiles.count == 3
     end
 
     def inspect
-      "#<Meld:\"#{@msp_notation}\">"
-    end
-
-    def to_s
-      @msp_notation
+      "#<CompletedMeld:\"#{@msp_notation}\">"
     end
 
     def open?; !!@msp_notation[/[#{Parser::OPEN_MELDED_SYMBOLS}]/] end
@@ -52,10 +32,6 @@ module TenpaiWakaruMan
       [chow_candidates[0] + 2,  chow_candidates[1] + 1, chow_candidates[2]].uniq.count == 1
     end
 
-    def only_one_suit?
-      @tiles.map {|tile| tile[-1] }.uniq.count == 1
-    end
-
     def open_triplet?;   open?   && triplet? end
     def closed_triplet?; closed? && triplet? end
     def open_quad?;      open?   && quad? end
@@ -70,28 +46,6 @@ module TenpaiWakaruMan
       when open_quad?;      :open_quad
       when closed_quad?;    :closed_quad
       end
-    end
-
-    def include_honor?
-      !!@msp_notation[/[#{Parser::HONOR_SYMBOLS}]/]
-    end
-
-    def include_terminal?
-      !!@msp_notation[/[19]/]
-    end
-
-    def include_terminal_or_honor?
-      include_honor? || include_terminal?
-    end
-
-    def exclude_terminal_or_honor?
-      !include_terminal_or_honor?
-    end
-
-    private
-
-    def to_msp_notation
-      @tiles.sort_by {|tile| TILES[tile] }.map {|tile| tile.split("") }.chunk {|_, suite| suite }.map {|key, arr| arr.map(&:first).join << key }.join
     end
   end
 end

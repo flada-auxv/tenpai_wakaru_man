@@ -142,11 +142,11 @@ module TenpaiWakaruMan
     end
 
     def triplet_pattern
-      count_by.select {|tile, count| count >= 3 }.keys.map {|t| Meld.new([t, t, t]) }
+      count_by.select {|tile, count| count >= 3 }.keys.map {|t| CompletedMeld.new([t, t, t]) }
     end
 
     def run_pattern
-      @tiles.combination(3).map {|tiles| Meld.new(tiles) }.select {|meld| meld.run? }
+      @tiles.combination(3).map {|tiles| CompletedMeld.new(tiles) }.select {|meld| meld.run? }
     end
 
     def count_by
