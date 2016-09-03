@@ -93,13 +93,13 @@ module TenpaiWakaruMan
     def meld_combination
       each_with_rest((@melds + meld_pattern)).with_object([]) {|(meld, rest_candidates), result|
         rest_tiles = extract_meld(all_tiles, meld)
-        result.push(*_combination(rest_candidates, Array(meld), rest_tiles))
+        result.push(*_meld_combination(rest_candidates, Array(meld), rest_tiles))
       }.uniq {|meld_arr| meld_arr.map(&:tiles).hash }
     end
 
     private
 
-    def _combination(candidates, current_result, tiles, result = [])
+    def _meld_combination(candidates, current_result, tiles, result = [])
       return [] if (candidates.count + current_result.count) < 4
 
       each_with_rest(candidates).with_object(result) {|(meld, rest_candidates), result|
@@ -110,7 +110,7 @@ module TenpaiWakaruMan
         if _current_result.count == 4
           result << _current_result
         else
-          _combination(rest_candidates, _current_result, rest_tiles, result)
+          _meld_combination(rest_candidates, _current_result, rest_tiles, result)
         end
       }
     end
