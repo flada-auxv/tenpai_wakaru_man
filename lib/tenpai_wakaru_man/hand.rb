@@ -52,7 +52,7 @@ module TenpaiWakaruMan
     end
 
     def detect_winning_hands
-      meld_combination.map {|melds| self.class.build(head: @head.dup, melds: melds) }.compact.select {|hand| hand.all_tiles == all_tiles }
+      meld_combination.map {|melds| self.class.build(head: @head.dup, melds: melds) }.compact
     end
 
     def ready?
