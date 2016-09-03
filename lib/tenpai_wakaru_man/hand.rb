@@ -53,7 +53,7 @@ module TenpaiWakaruMan
     def winning_hands
       detect_special_form!
 
-      @winning_hands ||= head_candidates.map {|head| dup.set_head(head) }.map {|hand| hand.detect_winning_hands }.reject(&:empty?).flatten
+      @winning_hands ||= head_candidates.map {|head| dup.set_head(head) }.map {|hand| hand.detect_winning_hands }.flatten
     end
 
     def detect_winning_hands
