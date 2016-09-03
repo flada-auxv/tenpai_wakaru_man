@@ -55,11 +55,7 @@ module TenpaiWakaruMan
       each_with_rest((@melds + meld_pattern)).with_object([]) {|(meld, rest_candidates), result|
         rest_tiles = extract_meld(all_tiles, meld)
         result.push(*_detect_winning_hands(rest_candidates, Array(meld), rest_tiles))
-      }.uniq {|meld_arr|
-        meld_arr.map(&:tiles).hash
-      }.map {|melds|
-        self.class.build(head: @head.dup, melds: melds)
-      }
+      }.uniq {|hand| [hand.head, hand.melds, hand.tiles].hash }
     end
 
     def ready?
@@ -108,7 +104,7 @@ module TenpaiWakaruMan
         _current_result = current_result.dup << meld
 
         if _current_result.count == 4
-          result << _current_result
+          result << self.class.build(head: @head.dup, melds: _current_result)
         else
           _detect_winning_hands(rest_candidates, _current_result, rest_tiles, result)
         end
