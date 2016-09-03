@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe TenpaiWakaruMan::Meld do
+describe TenpaiWakaruMan::CompletedMeld do
   describe '#initialize' do
-    subject(:meld) { TenpaiWakaruMan::Meld.new(tiles) }
+    subject(:meld) { TenpaiWakaruMan::CompletedMeld.new(tiles) }
 
     context 'with string(msp_notation)' do
       let(:tiles) { '222pa' }
@@ -20,7 +20,7 @@ describe TenpaiWakaruMan::Meld do
   end
 
   describe '#triplet?' do
-    subject { TenpaiWakaruMan::Meld.new(tiles).triplet? }
+    subject { TenpaiWakaruMan::CompletedMeld.new(tiles).triplet? }
 
     context 'case1' do
       let(:tiles) { %w(1m 1m 1m) }
@@ -34,7 +34,7 @@ describe TenpaiWakaruMan::Meld do
   end
 
   describe '#quad?' do
-    subject { TenpaiWakaruMan::Meld.new(tiles).quad? }
+    subject { TenpaiWakaruMan::CompletedMeld.new(tiles).quad? }
 
     context 'case1' do
       let(:tiles) { %w(1m 1m 1m 1m) }
@@ -48,7 +48,7 @@ describe TenpaiWakaruMan::Meld do
   end
 
   describe '#run?' do
-    subject { TenpaiWakaruMan::Meld.new(tiles).run? }
+    subject { TenpaiWakaruMan::CompletedMeld.new(tiles).run? }
 
     context 'case1' do
       let(:tiles) { %w(1m 2m 3m) }
@@ -72,7 +72,7 @@ describe TenpaiWakaruMan::Meld do
   end
 
   describe '#type' do
-    subject { TenpaiWakaruMan::Meld.new(tiles).type }
+    subject { TenpaiWakaruMan::CompletedMeld.new(tiles).type }
 
     context 'pair' do
       let(:tiles) { "11m" }
@@ -106,7 +106,7 @@ describe TenpaiWakaruMan::Meld do
   end
 
   describe '#include_terminal_or_honor?' do
-    subject { TenpaiWakaruMan::Meld.new(tiles).include_terminal_or_honor? }
+    subject { TenpaiWakaruMan::CompletedMeld.new(tiles).include_terminal_or_honor? }
 
     context 'with honor' do
       let(:tiles) { 'PPPd' }

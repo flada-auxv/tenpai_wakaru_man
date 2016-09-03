@@ -33,7 +33,7 @@ module TenpaiWakaruMan
     end
 
     def inspect
-      "#<#{self.class.name}:\"#{to_msp_notation}\", @head=#{@head.inspect}, @melds=#{@melds.map(&:to_s)}, @tiles=#{@tiles}>"
+      "#<Hand:\"#{to_msp_notation}\", @head=#{@head.inspect}, @melds=#{@melds.map(&:to_s)}, @tiles=#{@tiles}>"
     end
 
     def to_msp_notation
@@ -91,15 +91,15 @@ module TenpaiWakaruMan
     end
 
     def meld_combination
-      each_with_rest((@melds + meld_candidates)).with_object([]) {|(meld, rest_candidates), result|
+      each_with_rest((@melds + meld_pattern)).with_object([]) {|(meld, rest_candidates), result|
         rest_tiles = extract_meld(all_tiles, meld)
-        result.push(*_combination(rest_candidates, Array(meld), rest_tiles))
+        result.push(*_meld_combination(rest_candidates, Array(meld), rest_tiles))
       }.uniq {|meld_arr| meld_arr.map(&:tiles).hash }
     end
 
     private
 
-    def _combination(candidates, current_result, tiles, result = [])
+    def _meld_combination(candidates, current_result, tiles, result = [])
       return [] if (candidates.count + current_result.count) < 4
 
       each_with_rest(candidates).with_object(result) {|(meld, rest_candidates), result|
@@ -110,7 +110,7 @@ module TenpaiWakaruMan
         if _current_result.count == 4
           result << _current_result
         else
-          _combination(rest_candidates, _current_result, rest_tiles, result)
+          _meld_combination(rest_candidates, _current_result, rest_tiles, result)
         end
       }
     end
@@ -137,16 +137,22 @@ module TenpaiWakaruMan
       @tiles.uniq.select {|t| @tiles.count(t) >= 2 }
     end
 
-    def meld_candidates
-      (triplet_candidates + run_candidates).sort
+    def meld_pattern
+      (triplet_pattern + run_pattern).sort
     end
 
-    def triplet_candidates
-      count_by.select {|tile, count| count >= 3 }.keys.map {|t| Meld.new([t, t, t]) }
+    def triplet_pattern
+      count_by.select {|tile, count| count >= 3 }.keys.map {|t| CompletedMeld.new([t, t, t]) }
     end
 
-    def run_candidates
-      @tiles.combination(3).map {|tiles| Meld.new(tiles) }.select {|meld| meld.run? }
+    def run_pattern
+      @tiles.uniq.combination(3).each_with_object([]) {|tiles, res|
+        meld = CompletedMeld.new(tiles)
+        next unless meld.run?
+
+        min = tiles.map {|tile| count_by[tile] }.min
+        min.times { res << meld }
+      }
     end
 
     def count_by
