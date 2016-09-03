@@ -52,7 +52,14 @@ module TenpaiWakaruMan
     end
 
     def detect_winning_hands
-      meld_combination.map {|melds| self.class.build(head: @head.dup, melds: melds) }.compact
+      each_with_rest((@melds + meld_pattern)).with_object([]) {|(meld, rest_candidates), result|
+        rest_tiles = extract_meld(all_tiles, meld)
+        result.push(*_detect_winning_hands(rest_candidates, Array(meld), rest_tiles))
+      }.uniq {|meld_arr|
+        meld_arr.map(&:tiles).hash
+      }.map {|melds|
+        self.class.build(head: @head.dup, melds: melds)
+      }
     end
 
     def ready?
@@ -90,16 +97,9 @@ module TenpaiWakaruMan
       count_by.keys.count == 13 && all_tiles.all? {|tile| /[#{Parser::HONOR_SYMBOLS}19]/.match?(tile) }
     end
 
-    def meld_combination
-      each_with_rest((@melds + meld_pattern)).with_object([]) {|(meld, rest_candidates), result|
-        rest_tiles = extract_meld(all_tiles, meld)
-        result.push(*_meld_combination(rest_candidates, Array(meld), rest_tiles))
-      }.uniq {|meld_arr| meld_arr.map(&:tiles).hash }
-    end
-
     private
 
-    def _meld_combination(candidates, current_result, tiles, result = [])
+    def _detect_winning_hands(candidates, current_result, tiles, result = [])
       return [] if (candidates.count + current_result.count) < 4
 
       each_with_rest(candidates).with_object(result) {|(meld, rest_candidates), result|
@@ -110,7 +110,7 @@ module TenpaiWakaruMan
         if _current_result.count == 4
           result << _current_result
         else
-          _meld_combination(rest_candidates, _current_result, rest_tiles, result)
+          _detect_winning_hands(rest_candidates, _current_result, rest_tiles, result)
         end
       }
     end
