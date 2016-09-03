@@ -87,7 +87,7 @@ module TenpaiWakaruMan
     end
 
     def thirteen_orphans?
-      count_by.keys.count == 13 && all_tiles.all? {|tile| tile[/[#{Parser::HONOR_SYMBOLS}]/] || tile[/[19]/] }
+      count_by.keys.count == 13 && all_tiles.all? {|tile| /[#{Parser::HONOR_SYMBOLS}19]/.match?(tile) }
     end
 
     def meld_combination
