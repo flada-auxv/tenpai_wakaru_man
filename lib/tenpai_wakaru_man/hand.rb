@@ -146,7 +146,13 @@ module TenpaiWakaruMan
     end
 
     def run_pattern
-      @tiles.combination(3).map {|tiles| CompletedMeld.new(tiles) }.select {|meld| meld.run? }
+      @tiles.uniq.combination(3).each_with_object([]) {|tiles, res|
+        meld = CompletedMeld.new(tiles)
+        next unless meld.run?
+
+        min = tiles.map {|tile| count_by[tile] }.min
+        min.times { res << meld }
+      }
     end
 
     def count_by
