@@ -27,6 +27,11 @@ module TenpaiWakaruMan
     def ==(other)
       head == other.head && tiles == other.tiles && melds == other.melds
     end
+    alias_method :eql?, :==
+
+    def hash
+      [head, tiles, melds].hash
+    end
 
     def dup
       self.class.new(head: head&.dup, tiles: tiles.dup, melds: melds.dup)
@@ -55,7 +60,7 @@ module TenpaiWakaruMan
       each_with_rest((@melds + meld_pattern)).with_object([]) {|(meld, rest_candidates), result|
         rest_tiles = extract_meld(all_tiles, meld)
         result.push(*_detect_winning_hands(rest_candidates, Array(meld), rest_tiles))
-      }.uniq {|hand| [hand.head, hand.melds, hand.tiles].hash }
+      }.uniq
     end
 
     def ready?
