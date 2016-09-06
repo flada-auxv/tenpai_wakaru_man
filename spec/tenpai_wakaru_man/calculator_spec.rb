@@ -9,6 +9,11 @@ describe TenpaiWakaruMan::Calculator do
       it { is_expected.to be_nil }
     end
 
+    context 'chiitoitsu' do
+      let(:tiles) { '114477m225588p33s' }
+      it { is_expected.to eq({fu: 25, han: {chiitoitsu: 2}, ten: 1600}) }
+    end
+
     context 'pinfu' do
       let(:tiles) { '123456m456s78999p' }
       xit { is_expected.to eq({fu: 30, han: [:pinfu], ten: 1000}) }

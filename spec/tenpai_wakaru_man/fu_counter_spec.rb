@@ -16,6 +16,12 @@ describe TenpaiWakaruMan::FuCounter do
       it { is_expected.to eq(40) }
     end
 
+    context 'chiitoitsu' do
+      let(:tsumo_or_ron) { :tsumo }
+      let(:hand) { TenpaiWakaruMan::Parser.parse('114477m225588p33s').winning_hands[0] }
+      it { is_expected.to eq(25) }
+    end
+
     context 'pinfu' do
       let(:hand) { TenpaiWakaruMan::Parser.parse('123456m123s456p11m').winning_hands[0] }
       xit { is_expected.to eq(30) } # TODO pinfu

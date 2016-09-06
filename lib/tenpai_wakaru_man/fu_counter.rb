@@ -12,7 +12,7 @@ module TenpaiWakaruMan
     }
 
     class << self
-      def count(hand, options)
+      def count(hand, options = {})
         new(hand).count(options)
       end
     end
@@ -26,6 +26,9 @@ module TenpaiWakaruMan
     # seat_wind: ["Ew", "Sw", "Ww", "Nw"]
     # waits: [:ryanmen, :kanchan, :penchan, :tanki, :shanpon]
     def count(options = {})
+      return 25 if @hand.seven_pairs?
+      return 30 if @hand.thirteen_orphans? # XXX ほんと？
+
       fu = HUTEI +
           count_by_win_kind(options[:tsumo_or_ron]) +
           count_by_melds +

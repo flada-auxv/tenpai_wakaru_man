@@ -19,16 +19,34 @@ module TenpaiWakaruMan
         options[:tsumo_or_ron] = :ron
 
         fu = FuCounter.count(hand)
-        han = HanCounter.count(hand)
+        yaku = YakuCounter.count(hand)
+        han = yaku.values.inject(&:+)
 
-        {fu: fu, han: han, ten: TEN[han.size][fu][options[:tsumo_or_ron].to_s]}
+        {fu: fu, han: yaku, ten: TEN[han][fu][options[:tsumo_or_ron].to_s]}
       }.max {|hash| hash[:ten] }
     end
+  end
 
-    class HanCounter
-      def self.count(hand)
-        %i(pinfu)
-      end
+  class YakuCounter
+    attr_accessor :hand, :result
+
+    def initialize(hand )
+      @hand = hand
+      @result = {}
+    end
+
+    def self.count(hand)
+      new(hand).count
+    end
+
+    def count
+      chiitoitsu?
+
+      result
+    end
+
+    def chiitoitsu?
+      @result[:chiitoitsu] = 2 if hand.seven_pairs?
     end
   end
 end
