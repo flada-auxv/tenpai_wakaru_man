@@ -53,7 +53,7 @@ module TenpaiWakaruMan
     def winning_hands
       detect_special_form!
 
-      @winning_hands ||= head_candidates.map {|head| dup.set_head(head) }.map {|hand| hand.detect_winning_hands }.flatten
+      @winning_hands ||= head_candidates.map {|head| dup.extract_head(head) }.map {|hand| hand.detect_winning_hands }.flatten
     end
 
     def detect_winning_hands
@@ -71,7 +71,7 @@ module TenpaiWakaruMan
       }
     end
 
-    def set_head(tile)
+    def extract_head(tile)
       self.head = tile
       @tiles.slice!(@tiles.index(tile), 2)
 
